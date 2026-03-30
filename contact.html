@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Guru Nanak Institute of Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="nav-logo">GNI</div>
+        <div class="nav-name">
+          <span class="nav-title">Guru Nanak Institute of Technology</span>
+          <span class="nav-sub">Ludhiana, Punjab</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <a href="login.html" class="btn-primary">Student / Staff Login</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="accent-line"></div>
+    <h1>Get In Touch</h1>
+    <p>We'd love to hear from you. Reach out for admissions, queries, or just to learn more about GNI.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT INFO CARDS
+  ═══════════════════════════════════════════ -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="grid-3">
+
+        <div class="card text-center" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:14px;">📍</div>
+          <h3 class="card-title" style="font-size:1rem; margin-bottom:8px;">Our Address</h3>
+          <p class="text-sm">GT Road, Ludhiana<br>Punjab — 141001<br>India</p>
+        </div>
+
+        <div class="card text-center" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:14px;">📞</div>
+          <h3 class="card-title" style="font-size:1rem; margin-bottom:8px;">Phone</h3>
+          <p class="text-sm">+91 161 234 5678<br>+91 161 234 5679<br><span class="text-muted text-xs">Mon – Sat, 9 AM – 5 PM</span></p>
+        </div>
+
+        <div class="card text-center" style="text-align:center;">
+          <div style="font-size:2.2rem; margin-bottom:14px;">✉️</div>
+          <h3 class="card-title" style="font-size:1rem; margin-bottom:8px;">Email</h3>
+          <p class="text-sm">info@gniludhiana.edu.in<br>admissions@gniludhiana.edu.in<br><span class="text-muted text-xs">We reply within 24 hours</span></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       APPOINTMENT FORM + MAP
+  ═══════════════════════════════════════════ -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="grid-2" style="align-items:start; gap:40px;">
+
+        <!-- Appointment Form -->
+        <div>
+          <div class="section-header" style="text-align:left; margin-bottom:28px;">
+            <span class="section-label">Book an Appointment</span>
+            <h2 style="font-size:1.8rem;">Visit or Call Us</h2>
+            <p>Fill in the form below and our admissions team will get in touch with you within 24 hours.</p>
+          </div>
+
+          <!-- Success Alert (hidden by default) -->
+          <div class="alert alert-success hidden" id="successMsg">
+            ✅ Thank you! We'll contact you within 24 hours.
+          </div>
+
+          <div id="appointmentForm">
+            <div class="form-group">
+              <label class="form-label" for="fullName">Full Name</label>
+              <input type="text" id="fullName" class="form-input" placeholder="e.g. Rajveer Singh" />
+            </div>
+
+            <div class="grid-2" style="gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone Number</label>
+                <input type="tel" id="phone" class="form-input" placeholder="+91 98765 43210" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" class="form-input" placeholder="you@email.com" />
+              </div>
+            </div>
+
+            <div class="grid-2" style="gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="program">Program Interested In</label>
+                <select id="program" class="form-select">
+                  <option value="">Select a Program</option>
+                  <option>BCA — Bachelor of Computer Applications</option>
+                  <option>BBA — Bachelor of Business Administration</option>
+                  <option>B.Com — Bachelor of Commerce</option>
+                  <option>MCA — Master of Computer Applications</option>
+                  <option>M.Com — Master of Commerce</option>
+                  <option>PGDCA — Post Graduate Diploma in Computer Applications</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="prefDate">Preferred Visit Date</label>
+                <input type="date" id="prefDate" class="form-input" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message (Optional)</label>
+              <textarea id="message" class="form-textarea" placeholder="Any specific questions or topics you'd like to discuss..."></textarea>
+            </div>
+
+            <div id="formError" class="form-error hidden" style="margin-bottom:12px;"></div>
+
+            <button class="btn-primary btn-lg w-full" onclick="submitAppointment()">
+              📅 Book Appointment
+            </button>
+          </div>
+        </div>
+
+        <!-- Map + Office Hours -->
+        <div>
+          <!-- Map Placeholder -->
+          <div class="section-header" style="text-align:left; margin-bottom:20px;">
+            <span class="section-label">Find Us</span>
+            <h2 style="font-size:1.8rem;">Campus Location</h2>
+          </div>
+
+          <div class="map-placeholder" style="min-height:280px; margin-bottom:28px;">
+            <div class="map-icon">📍</div>
+            <div style="font-weight:600; color:var(--text-primary); font-size:0.95rem;">GNI Campus, GT Road, Ludhiana</div>
+            <div style="font-size:0.82rem; color:var(--text-secondary); margin-top:4px;">Punjab — 141001</div>
+            <div style="margin-top:16px;">
+              <a href="https://maps.google.com" target="_blank" class="btn-secondary btn-sm">Open in Google Maps ↗</a>
+            </div>
+          </div>
+
+          <!-- Office Hours -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">🕘 Office Hours</span>
+              <span class="badge badge-success">Open Today</span>
+            </div>
+
+            <table style="width:100%; border-collapse:collapse;">
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:10px 0; font-size:0.875rem; font-weight:600; color:var(--text-primary);">Monday – Friday</td>
+                  <td style="padding:10px 0; font-size:0.875rem; color:var(--text-secondary); text-align:right;">9:00 AM – 5:00 PM</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border);">
+                  <td style="padding:10px 0; font-size:0.875rem; font-weight:600; color:var(--text-primary);">Saturday</td>
+                  <td style="padding:10px 0; font-size:0.875rem; color:var(--text-secondary); text-align:right;">9:00 AM – 2:00 PM</td>
+                </tr>
+                <tr>
+                  <td style="padding:10px 0; font-size:0.875rem; font-weight:600; color:var(--danger);">Sunday</td>
+                  <td style="padding:10px 0; font-size:0.875rem; color:var(--danger); text-align:right; font-weight:600;">Closed</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="alert alert-info mt-3" style="margin-bottom:0;">
+              💡 For urgent matters, email us at <strong>info@gniludhiana.edu.in</strong> — we monitor emails on weekends too.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">GNI</div>
+        <p>Guru Nanak Institute of Technology, Ludhiana</p>
+        <p>Affiliated to Punjab Technical University</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 GT Road, Ludhiana, Punjab - 141001</p>
+        <p>📞 +91 161 234 5678</p>
+        <p>✉️ info@gniludhiana.edu.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guru Nanak Institute of Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    function submitAppointment() {
+      const name    = document.getElementById('fullName').value.trim();
+      const phone   = document.getElementById('phone').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const program = document.getElementById('program').value;
+      const date    = document.getElementById('prefDate').value;
+      const errDiv  = document.getElementById('formError');
+
+      // Basic validation
+      if (!name || !phone || !email || !program || !date) {
+        errDiv.textContent = '⚠️ Please fill in all required fields before submitting.';
+        errDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Simple email check
+      if (!email.includes('@')) {
+        errDiv.textContent = '⚠️ Please enter a valid email address.';
+        errDiv.classList.remove('hidden');
+        return;
+      }
+
+      errDiv.classList.add('hidden');
+
+      // Hide form, show success
+      document.getElementById('appointmentForm').classList.add('hidden');
+      document.getElementById('successMsg').classList.remove('hidden');
+
+      // Scroll to success message
+      document.getElementById('successMsg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    // Set min date on date picker to today
+    const dateInput = document.getElementById('prefDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+  </script>
+</body>
+</html>

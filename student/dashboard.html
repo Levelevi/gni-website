@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — GNI Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Portal</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">RS</div>
+        <div>
+          <div class="user-name">Rajveer Singh</div>
+          <div class="user-role">BCA 3rd Sem</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
+        <a href="timetable.html" class="sidebar-link">📅 Timetable</a>
+        <a href="results.html" class="sidebar-link">📝 Results</a>
+        <a href="queries.html" class="sidebar-link">💬 My Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>Dashboard</h1>
+        <p>Welcome back — here's your academic overview for today.</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Welcome Bar -->
+        <div class="welcome-bar">
+          <div>
+            <h2>Good morning, Rajveer 👋</h2>
+            <p>BCA 3rd Semester &nbsp;·&nbsp; Roll No: BCA2301 &nbsp;·&nbsp; Academic Year 2024–25</p>
+          </div>
+          <div class="welcome-badge">3rd Semester</div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-value">5</div>
+            <div class="stat-label">Subjects Enrolled</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-value">74%</div>
+            <div class="stat-label">Overall Attendance</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📝</div>
+            <div class="stat-value">7.4</div>
+            <div class="stat-label">Current SGPA</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">Pending Queries</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+
+          <!-- Attendance Overview -->
+          <div class="card full-width">
+            <div class="card-header">
+              <span class="card-title">📊 Attendance Overview</span>
+              <span class="badge badge-warning">1 subject at risk</span>
+            </div>
+            <div class="attendance-grid">
+
+              <!-- DS: 82% — green -->
+              <div class="attendance-card">
+                <div class="attendance-subject">Data Structures</div>
+                <div class="progress-ring">
+                  <svg viewBox="0 0 72 72">
+                    <circle class="ring-bg" cx="36" cy="36" r="30" />
+                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
+                      stroke-dasharray="188.5"
+                      stroke-dashoffset="33.9" />
+                  </svg>
+                  <div class="ring-value">82%</div>
+                </div>
+                <span class="badge badge-success">Safe</span>
+              </div>
+
+              <!-- DBMS: 67% — orange -->
+              <div class="attendance-card">
+                <div class="attendance-subject">DBMS</div>
+                <div class="progress-ring">
+                  <svg viewBox="0 0 72 72">
+                    <circle class="ring-bg" cx="36" cy="36" r="30" />
+                    <circle class="ring-fill ring-warning" cx="36" cy="36" r="30"
+                      stroke-dasharray="188.5"
+                      stroke-dashoffset="62.2" />
+                  </svg>
+                  <div class="ring-value">67%</div>
+                </div>
+                <span class="badge badge-warning">Low</span>
+              </div>
+
+              <!-- Web Tech: 91% — green -->
+              <div class="attendance-card">
+                <div class="attendance-subject">Web Tech</div>
+                <div class="progress-ring">
+                  <svg viewBox="0 0 72 72">
+                    <circle class="ring-bg" cx="36" cy="36" r="30" />
+                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
+                      stroke-dasharray="188.5"
+                      stroke-dashoffset="16.97" />
+                  </svg>
+                  <div class="ring-value">91%</div>
+                </div>
+                <span class="badge badge-success">Excellent</span>
+              </div>
+
+              <!-- Math: 58% — red -->
+              <div class="attendance-card">
+                <div class="attendance-subject">Discrete Math</div>
+                <div class="progress-ring">
+                  <svg viewBox="0 0 72 72">
+                    <circle class="ring-bg" cx="36" cy="36" r="30" />
+                    <circle class="ring-fill ring-danger" cx="36" cy="36" r="30"
+                      stroke-dasharray="188.5"
+                      stroke-dashoffset="79.2" />
+                  </svg>
+                  <div class="ring-value">58%</div>
+                </div>
+                <span class="badge badge-danger">At Risk</span>
+              </div>
+
+              <!-- OS: 76% — green -->
+              <div class="attendance-card">
+                <div class="attendance-subject">Operating Systems</div>
+                <div class="progress-ring">
+                  <svg viewBox="0 0 72 72">
+                    <circle class="ring-bg" cx="36" cy="36" r="30" />
+                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
+                      stroke-dasharray="188.5"
+                      stroke-dashoffset="45.24" />
+                  </svg>
+                  <div class="ring-value">76%</div>
+                </div>
+                <span class="badge badge-success">Safe</span>
+              </div>
+
+            </div>
+
+            <div class="alert alert-danger mt-3" style="margin-bottom:0;">
+              ⚠️ <strong>Discrete Mathematics</strong> attendance is below 60%. Minimum required is 75%. Please attend regularly to avoid detainment.
+            </div>
+          </div>
+
+          <!-- Notice Board -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">📢 Notice Board</span>
+              <span class="badge badge-info">5 notices</span>
+            </div>
+            <div class="notice-list">
+
+              <div class="notice-item">
+                <span class="notice-date-badge">3 days ago</span>
+                <div>
+                  <div class="notice-text">Exam form submission last date: 30th November</div>
+                  <div class="notice-meta">Posted by Admin &nbsp;·&nbsp; <span class="badge badge-danger" style="font-size:0.68rem;">Urgent</span></div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">1 week ago</span>
+                <div>
+                  <div class="notice-text">Annual Fest "Roshni 2024" — Registrations are now open!</div>
+                  <div class="notice-meta">Posted by Student Council &nbsp;·&nbsp; <span class="badge badge-accent" style="font-size:0.68rem;">Event</span></div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">2 weeks ago</span>
+                <div>
+                  <div class="notice-text">Library will remain closed on 25th November (holiday)</div>
+                  <div class="notice-meta">Posted by Library Dept.</div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">3 weeks ago</span>
+                <div>
+                  <div class="notice-text">Internal Assessment schedule for Nov has been uploaded to the portal</div>
+                  <div class="notice-meta">Posted by Examination Cell</div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">1 month ago</span>
+                <div>
+                  <div class="notice-text">New batch of BCA 1st Semester — Orientation on 2nd October</div>
+                  <div class="notice-meta">Posted by Admin</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">⚡ Quick Actions</span>
+            </div>
+            <p class="text-sm text-muted mb-3">Jump to the section you need right away.</p>
+            <div class="quick-links" style="flex-direction:column; gap:12px;">
+              <a href="timetable.html" class="btn-secondary w-full" style="justify-content:flex-start; gap:12px;">
+                📅 &nbsp; View Weekly Timetable
+              </a>
+              <a href="results.html" class="btn-secondary w-full" style="justify-content:flex-start; gap:12px;">
+                📝 &nbsp; View Semester Results
+              </a>
+              <a href="queries.html" class="btn-primary w-full" style="justify-content:flex-start; gap:12px;">
+                💬 &nbsp; Ask a Query
+              </a>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="card-header" style="margin-bottom:12px; padding-bottom:12px;">
+              <span class="card-title" style="font-size:0.95rem;">🗓️ Upcoming</span>
+            </div>
+            <div class="notice-list">
+              <div class="notice-item" style="padding:10px 0;">
+                <span class="notice-date-badge">30 Nov</span>
+                <div class="notice-text" style="font-size:0.82rem;">Exam form deadline</div>
+              </div>
+              <div class="notice-item" style="padding:10px 0;">
+                <span class="notice-date-badge">5 Dec</span>
+                <div class="notice-text" style="font-size:0.82rem;">Internal Assessment — DS &amp; DBMS</div>
+              </div>
+              <div class="notice-item" style="padding:10px 0; border-bottom:none;">
+                <span class="notice-date-badge">15 Dec</span>
+                <div class="notice-text" style="font-size:0.82rem;">End Semester Exams begin</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    // Auth guard
+    requireLogin('student');
+  </script>
+</body>
+</html>

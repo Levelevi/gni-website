@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results — GNI Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .grade-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .grade-a { background: rgba(46,204,113,0.12); color: #1a8a50; }
+    .grade-b { background: rgba(42,82,152,0.10);  color: #2a5298; }
+    .grade-c { background: rgba(244,168,7,0.15);  color: #8a6000; }
+    .grade-d { background: rgba(231,76,60,0.10);  color: #c0392b; }
+
+    .marks-bar-wrap {
+      width: 100%;
+      height: 6px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .marks-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.6s ease;
+    }
+
+    .result-card-highlight {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      color: #fff;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .result-card-highlight h2 {
+      color: #fff;
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+    .result-card-highlight p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.875rem;
+    }
+    .result-big-stat {
+      text-align: center;
+    }
+    .result-big-stat .val {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .result-big-stat .lbl {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .divider-v {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Portal</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">RS</div>
+        <div>
+          <div class="user-name">Rajveer Singh</div>
+          <div class="user-role">BCA 3rd Sem</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+        <a href="timetable.html" class="sidebar-link">📅 Timetable</a>
+        <a href="results.html" class="sidebar-link active">📝 Results</a>
+        <a href="queries.html" class="sidebar-link">💬 My Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>Results</h1>
+        <p>BCA 3rd Semester — Marks & Grade Card</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Result Highlight Card -->
+        <div class="result-card-highlight">
+          <div>
+            <h2>BCA 3rd Semester — Result Card</h2>
+            <p>Rajveer Singh &nbsp;·&nbsp; Roll No: BCA2301 &nbsp;·&nbsp; Academic Year 2024–25</p>
+            <div style="margin-top:14px;">
+              <span class="badge" style="background:rgba(46,204,113,0.2); color:#6effa8; border:1px solid rgba(46,204,113,0.3); font-size:0.8rem;">
+                ✅ PASS
+              </span>
+            </div>
+          </div>
+          <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
+            <div class="result-big-stat">
+              <div class="val">7.4</div>
+              <div class="lbl">SGPA</div>
+            </div>
+            <div class="divider-v"></div>
+            <div class="result-big-stat">
+              <div class="val">68.2%</div>
+              <div class="lbl">Percentage</div>
+            </div>
+            <div class="divider-v"></div>
+            <div class="result-big-stat">
+              <div class="val">349</div>
+              <div class="lbl">Total Marks</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marks Table -->
+        <div class="card" style="margin-bottom:24px;">
+          <div class="card-header">
+            <span class="card-title">📋 Subject-wise Marks</span>
+            <span class="badge badge-info">5 Subjects · 500 Total</span>
+          </div>
+
+          <div class="table-wrapper" style="box-shadow:none; border:none; border-radius:0;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th style="text-align:center;">Internal<br><span style="font-weight:400; opacity:0.7;">(Max 25)</span></th>
+                  <th style="text-align:center;">External<br><span style="font-weight:400; opacity:0.7;">(Max 75)</span></th>
+                  <th style="text-align:center;">Total<br><span style="font-weight:400; opacity:0.7;">(Max 100)</span></th>
+                  <th style="text-align:center;">Grade</th>
+                  <th style="text-align:center;">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <!-- Data Structures: 18+52=70 B -->
+                <tr>
+                  <td>
+                    <div class="font-semibold" style="font-size:0.875rem;">Data Structures</div>
+                    <div class="text-xs text-muted">DS — BCA301</div>
+                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:70%; background:var(--primary-light);"></div></div>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">18</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">52</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">70</span>
+                  </td>
+                  <td style="text-align:center;"><span class="grade-pill grade-b">B</span></td>
+                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
+                </tr>
+
+                <!-- DBMS: 16+48=64 C -->
+                <tr>
+                  <td>
+                    <div class="font-semibold" style="font-size:0.875rem;">Database Management Systems</div>
+                    <div class="text-xs text-muted">DBMS — BCA302</div>
+                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:64%; background:#e67e22;"></div></div>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">16</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">48</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">64</span>
+                  </td>
+                  <td style="text-align:center;"><span class="grade-pill grade-c">C</span></td>
+                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
+                </tr>
+
+                <!-- Web Tech: 22+61=83 A -->
+                <tr>
+                  <td>
+                    <div class="font-semibold" style="font-size:0.875rem;">Web Technologies</div>
+                    <div class="text-xs text-muted">Web Tech — BCA303</div>
+                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:83%; background:var(--success);"></div></div>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">22</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">61</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">83</span>
+                  </td>
+                  <td style="text-align:center;"><span class="grade-pill grade-a">A</span></td>
+                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
+                </tr>
+
+                <!-- Discrete Math: 14+44=58 D -->
+                <tr>
+                  <td>
+                    <div class="font-semibold" style="font-size:0.875rem;">Discrete Mathematics</div>
+                    <div class="text-xs text-muted">Math — BCA304</div>
+                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:58%; background:var(--danger);"></div></div>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">14</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">44</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-bold" style="font-size:1rem; color:var(--danger);">58</span>
+                  </td>
+                  <td style="text-align:center;"><span class="grade-pill grade-d">D</span></td>
+                  <td style="text-align:center;"><span class="badge badge-warning">Borderline</span></td>
+                </tr>
+
+                <!-- OS: 19+55=74 B -->
+                <tr>
+                  <td>
+                    <div class="font-semibold" style="font-size:0.875rem;">Operating Systems</div>
+                    <div class="text-xs text-muted">OS — BCA305</div>
+                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:74%; background:var(--primary-light);"></div></div>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">19</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-semibold">55</span>
+                  </td>
+                  <td style="text-align:center;">
+                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">74</span>
+                  </td>
+                  <td style="text-align:center;"><span class="grade-pill grade-b">B</span></td>
+                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
+                </tr>
+
+              </tbody>
+
+              <!-- Totals Row -->
+              <tfoot>
+                <tr style="background: rgba(26,60,94,0.04); border-top: 2px solid var(--border);">
+                  <td style="font-weight:700; font-size:0.875rem; color:var(--primary); padding:14px 18px;">Total</td>
+                  <td style="text-align:center; font-weight:700; color:var(--primary);">89 / 125</td>
+                  <td style="text-align:center; font-weight:700; color:var(--primary);">260 / 375</td>
+                  <td style="text-align:center; font-weight:700; font-size:1.05rem; color:var(--primary);">349 / 500</td>
+                  <td style="text-align:center;">—</td>
+                  <td style="text-align:center;"><span class="badge badge-success">PASS</span></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <!-- Summary + Grade Key row -->
+        <div class="grid-2" style="gap:24px;">
+
+          <!-- Result Summary -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">📊 Result Summary</span>
+            </div>
+            <div class="result-summary" style="margin-top:0; border:none; padding:0; box-shadow:none; gap:20px; flex-wrap:wrap;">
+              <div class="result-stat">
+                <span class="label">SGPA</span>
+                <span class="value">7.4</span>
+              </div>
+              <div class="result-stat">
+                <span class="label">Percentage</span>
+                <span class="value pass">68.2%</span>
+              </div>
+              <div class="result-stat">
+                <span class="label">Total Marks</span>
+                <span class="value">349 / 500</span>
+              </div>
+              <div class="result-stat">
+                <span class="label">Result</span>
+                <span class="value pass">PASS</span>
+              </div>
+            </div>
+            <div class="result-note">
+              Results are provisional. Subject to university verification by Punjab Technical University.
+            </div>
+          </div>
+
+          <!-- Grade Key -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">🎓 Grade Scale</span>
+            </div>
+            <div class="table-wrapper" style="box-shadow:none; border:none;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Grade</th>
+                    <th>Marks Range</th>
+                    <th>Grade Points</th>
+                    <th>Remark</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="grade-pill grade-a">A</span></td>
+                    <td>75 – 100</td>
+                    <td class="font-semibold">9 – 10</td>
+                    <td><span class="badge badge-success">Excellent</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="grade-pill grade-b">B</span></td>
+                    <td>60 – 74</td>
+                    <td class="font-semibold">7 – 8</td>
+                    <td><span class="badge badge-info">Good</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="grade-pill grade-c">C</span></td>
+                    <td>50 – 59</td>
+                    <td class="font-semibold">5 – 6</td>
+                    <td><span class="badge badge-warning">Average</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="grade-pill grade-d">D</span></td>
+                    <td>40 – 49</td>
+                    <td class="font-semibold">4</td>
+                    <td><span class="badge badge-warning">Pass</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="grade-pill grade-d" style="background:rgba(231,76,60,0.15);">F</span></td>
+                    <td>Below 40</td>
+                    <td class="font-semibold">0</td>
+                    <td><span class="badge badge-danger">Fail</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    requireLogin('student');
+  </script>
+</body>
+</html>

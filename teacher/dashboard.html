@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — GNI Staff Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Staff</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">PK</div>
+        <div>
+          <div class="user-name">Prof. Parminder Kaur</div>
+          <div class="user-role">Computer Science Dept.</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link active">🏠 Dashboard</a>
+        <a href="notices.html"   class="sidebar-link">📢 Notices</a>
+        <a href="queries.html"   class="sidebar-link">💬 Student Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>Teacher Dashboard</h1>
+        <p>Welcome back — here's your overview for today.</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Welcome Bar -->
+        <div class="welcome-bar" style="margin-bottom:28px;">
+          <div>
+            <h2>Welcome, Prof. Parminder Kaur 👋</h2>
+            <p>Computer Science Department &nbsp;·&nbsp; Employee ID: TCH001 &nbsp;·&nbsp; Academic Year 2024–25</p>
+          </div>
+          <div class="welcome-badge">CS Faculty</div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="stats-row" style="margin-bottom:28px;">
+          <div class="stat-card">
+            <div class="stat-icon">🎓</div>
+            <div class="stat-value">62</div>
+            <div class="stat-label">Total Students</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">💬</div>
+            <div class="stat-value">4</div>
+            <div class="stat-label">Pending Queries</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📢</div>
+            <div class="stat-value">7</div>
+            <div class="stat-label">Notices Posted</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div class="stat-value">2</div>
+            <div class="stat-label">Subjects Teaching</div>
+          </div>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+
+          <!-- Student List -->
+          <div class="card full-width">
+            <div class="card-header">
+              <span class="card-title">🎓 My Students — BCA 3rd Semester</span>
+              <span class="badge badge-info">62 enrolled · showing top 6</span>
+            </div>
+            <div class="table-wrapper" style="box-shadow:none; border:none; border-radius:0;">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Roll No</th>
+                    <th>Student Name</th>
+                    <th>Overall Attendance</th>
+                    <th>SGPA</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="font-semibold">BCA2301</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem;">RS</div>
+                        Rajveer Singh
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:74%; height:100%; background:var(--warning); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">74%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">7.4</td>
+                    <td><span class="badge badge-warning">At Risk</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">BCA2302</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem;">SK</div>
+                        Simran Kaur
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:88%; height:100%; background:var(--success); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">88%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">8.2</td>
+                    <td><span class="badge badge-success">Good</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">BCA2303</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem;">AS</div>
+                        Arjun Sharma
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:91%; height:100%; background:var(--success); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">91%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">8.7</td>
+                    <td><span class="badge badge-success">Good</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">BCA2304</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem;">NG</div>
+                        Navjot Gill
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:62%; height:100%; background:var(--warning); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">62%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">6.8</td>
+                    <td><span class="badge badge-warning">At Risk</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">BCA2305</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem;">PM</div>
+                        Priya Mehta
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:55%; height:100%; background:var(--danger); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">55%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">6.1</td>
+                    <td><span class="badge badge-danger">Detained Risk</span></td>
+                  </tr>
+                  <tr>
+                    <td class="font-semibold">BCA2306</td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div class="user-avatar" style="width:32px;height:32px;font-size:0.72rem; background:#7d3c98;">HV</div>
+                        Harleen Virk
+                      </div>
+                    </td>
+                    <td>
+                      <div style="display:flex; align-items:center; gap:10px;">
+                        <div style="flex:1; height:6px; background:var(--border); border-radius:4px; overflow:hidden; max-width:100px;">
+                          <div style="width:95%; height:100%; background:var(--success); border-radius:4px;"></div>
+                        </div>
+                        <span class="text-sm font-semibold">95%</span>
+                      </div>
+                    </td>
+                    <td class="font-semibold">9.1</td>
+                    <td><span class="badge badge-success">Excellent</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Recent Notices -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">📢 Recent Notices</span>
+              <a href="notices.html" class="btn-secondary btn-sm">View All</a>
+            </div>
+            <div class="notice-list">
+
+              <div class="notice-item">
+                <span class="notice-date-badge">3 days ago</span>
+                <div>
+                  <div class="notice-text">Exam form submission last date: 30th November</div>
+                  <div class="notice-meta"><span class="badge badge-danger" style="font-size:0.68rem;">Exam</span></div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">1 week ago</span>
+                <div>
+                  <div class="notice-text">Annual Fest "Roshni 2024" — Registrations open</div>
+                  <div class="notice-meta"><span class="badge badge-accent" style="font-size:0.68rem;">Event</span></div>
+                </div>
+              </div>
+
+              <div class="notice-item">
+                <span class="notice-date-badge">2 weeks ago</span>
+                <div>
+                  <div class="notice-text">Internal Assessment schedule for November uploaded</div>
+                  <div class="notice-meta"><span class="badge badge-info" style="font-size:0.68rem;">General</span></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">⚡ Quick Actions</span>
+            </div>
+            <p class="text-sm text-muted mb-3">Manage your classes and communications.</p>
+            <div style="display:flex; flex-direction:column; gap:12px;">
+              <a href="notices.html" class="btn-primary w-full" style="justify-content:flex-start; gap:12px;">
+                📢 &nbsp; Post New Notice
+              </a>
+              <a href="queries.html" class="btn-secondary w-full" style="justify-content:flex-start; gap:12px;">
+                💬 &nbsp; View Student Queries
+                <span class="badge badge-warning" style="margin-left:auto;">4 pending</span>
+              </a>
+            </div>
+
+            <hr class="divider" />
+
+            <div class="card-header" style="margin-bottom:12px; padding-bottom:12px;">
+              <span class="card-title" style="font-size:0.95rem;">📋 Subjects Teaching</span>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:10px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--bg); border-radius:var(--radius); border:1px solid var(--border);">
+                <span class="font-semibold text-sm">Data Structures</span>
+                <span class="badge badge-info">BCA 3rd Sem</span>
+              </div>
+              <div style="display:flex; align-items:center; justify-content:space-between; padding:10px 14px; background:var(--bg); border-radius:var(--radius); border:1px solid var(--border);">
+                <span class="font-semibold text-sm">Database Management Systems</span>
+                <span class="badge badge-info">BCA 3rd Sem</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    requireLogin('teacher');
+  </script>
+</body>
+</html>

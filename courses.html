@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses & Programs — GNI Ludhiana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ── Program Cards ── */
+    .program-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: box-shadow 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .program-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .program-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-5px);
+    }
+
+    .program-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .program-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .program-full {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .program-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .program-tag {
+      background: rgba(26,60,94,0.07);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .program-tag.accent {
+      background: rgba(244,168,7,0.12);
+      color: #8a6000;
+    }
+
+    .program-subjects-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+
+    .program-subjects {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .program-subject-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .program-subject-item::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Admission Steps ── */
+    .admission-section {
+      background: var(--primary);
+      padding: 80px 24px;
+    }
+
+    .admission-section .section-header h2 {
+      color: #fff;
+    }
+
+    .admission-section .section-header p {
+      color: rgba(203,213,225,0.8);
+    }
+
+    .admission-section .section-label {
+      color: var(--accent-light);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: calc(12.5%);
+      right: calc(12.5%);
+      height: 2px;
+      background: rgba(244,168,7,0.3);
+      z-index: 0;
+    }
+
+    .step-box {
+      text-align: center;
+      padding: 0 16px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--primary);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 16px rgba(244,168,7,0.35);
+    }
+
+    .step-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .step-desc {
+      font-size: 0.78rem;
+      color: rgba(203,213,225,0.7);
+      line-height: 1.55;
+    }
+
+    /* ── Fee Note ── */
+    .fee-note-box {
+      background: rgba(244,168,7,0.07);
+      border: 1px solid rgba(244,168,7,0.2);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .fee-note-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    .fee-note-box h4 {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .fee-note-box p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── Eligibility Table ── */
+    .eligibility-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .eligibility-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eligibility-prog {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .eligibility-req {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-align: right;
+    }
+
+    @media (max-width: 900px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+      }
+      .steps-grid::before { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .steps-grid { grid-template-columns: 1fr; }
+      .eligibility-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="nav-logo">GNI</div>
+        <div class="nav-name">
+          <span class="nav-title">Guru Nanak Institute of Technology</span>
+          <span class="nav-sub">Ludhiana, Punjab</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html" class="active">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="login.html" class="btn-primary">Student / Staff Login</a>
+    </div>
+  </nav>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="accent-line"></div>
+    <h1>Our Programs</h1>
+    <p>Six industry-aligned programs across technology, commerce, and management — from undergraduate to postgraduate.</p>
+  </section>
+
+  <!-- ══ PROGRAM CARDS ════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Academic Programs</span>
+        <h2>Find Your Program</h2>
+        <p>All programs are affiliated with Punjab Technical University and designed with industry relevance in mind.</p>
+      </div>
+
+      <div class="grid-3">
+
+        <!-- BCA -->
+        <div class="program-card">
+          <div class="program-icon">💻</div>
+          <div class="program-name">BCA</div>
+          <div class="program-full">Bachelor of Computer Applications</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 3 Years</span>
+            <span class="program-tag">6 Semesters</span>
+            <span class="program-tag accent">60 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Data Structures & Algorithms</div>
+            <div class="program-subject-item">Database Management Systems</div>
+            <div class="program-subject-item">Web Technologies</div>
+            <div class="program-subject-item">Operating Systems</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+        <!-- BBA -->
+        <div class="program-card">
+          <div class="program-icon">📊</div>
+          <div class="program-name">BBA</div>
+          <div class="program-full">Bachelor of Business Administration</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 3 Years</span>
+            <span class="program-tag">6 Semesters</span>
+            <span class="program-tag accent">60 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Principles of Management</div>
+            <div class="program-subject-item">Business Economics</div>
+            <div class="program-subject-item">Marketing Management</div>
+            <div class="program-subject-item">Financial Accounting</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+        <!-- B.Com -->
+        <div class="program-card">
+          <div class="program-icon">🧾</div>
+          <div class="program-name">B.Com</div>
+          <div class="program-full">Bachelor of Commerce</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 3 Years</span>
+            <span class="program-tag">6 Semesters</span>
+            <span class="program-tag accent">60 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Corporate Accounting</div>
+            <div class="program-subject-item">Income Tax Law & Practice</div>
+            <div class="program-subject-item">Business Statistics</div>
+            <div class="program-subject-item">Auditing & Assurance</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+        <!-- M.Com -->
+        <div class="program-card">
+          <div class="program-icon">🏦</div>
+          <div class="program-name">M.Com</div>
+          <div class="program-full">Master of Commerce</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 2 Years</span>
+            <span class="program-tag">4 Semesters</span>
+            <span class="program-tag accent">30 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Advanced Financial Accounting</div>
+            <div class="program-subject-item">Strategic Management</div>
+            <div class="program-subject-item">Research Methodology</div>
+            <div class="program-subject-item">International Finance</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+        <!-- MCA -->
+        <div class="program-card">
+          <div class="program-icon">🖥️</div>
+          <div class="program-name">MCA</div>
+          <div class="program-full">Master of Computer Applications</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 2 Years</span>
+            <span class="program-tag">4 Semesters</span>
+            <span class="program-tag accent">30 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Advanced Algorithms</div>
+            <div class="program-subject-item">Software Engineering</div>
+            <div class="program-subject-item">Cloud Computing</div>
+            <div class="program-subject-item">Machine Learning Fundamentals</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+        <!-- PGDCA -->
+        <div class="program-card">
+          <div class="program-icon">🎓</div>
+          <div class="program-name">PGDCA</div>
+          <div class="program-full">Post Graduate Diploma in Computer Applications</div>
+          <div class="program-meta">
+            <span class="program-tag">⏱ 1 Year</span>
+            <span class="program-tag">2 Semesters</span>
+            <span class="program-tag accent">40 Seats</span>
+          </div>
+          <div class="program-subjects-label">Key Subjects</div>
+          <div class="program-subjects">
+            <div class="program-subject-item">Programming in C & Python</div>
+            <div class="program-subject-item">Office Automation Tools</div>
+            <div class="program-subject-item">Database Concepts</div>
+            <div class="program-subject-item">Internet & Web Basics</div>
+          </div>
+          <button class="btn-primary w-full">Know More</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ADMISSION PROCESS ════════════════════════════════ -->
+  <section class="admission-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" style="color:var(--accent-light);">How to Join</span>
+        <h2>Admission Process</h2>
+        <p>Four simple steps to secure your seat at GNI.</p>
+      </div>
+
+      <div class="steps-grid">
+
+        <div class="step-box">
+          <div class="step-circle">1</div>
+          <div class="step-title">Apply Online</div>
+          <div class="step-desc">Fill out the application form on our website or visit the admissions office to collect a physical form.</div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-circle">2</div>
+          <div class="step-title">Document Verification</div>
+          <div class="step-desc">Submit your mark sheets, ID proof, and photographs. Our team verifies eligibility as per PTU norms.</div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-circle">3</div>
+          <div class="step-title">Merit List</div>
+          <div class="step-desc">A merit list is published based on qualifying exam scores. Shortlisted candidates are notified by SMS and email.</div>
+        </div>
+
+        <div class="step-box">
+          <div class="step-circle">4</div>
+          <div class="step-title">Enrollment</div>
+          <div class="step-desc">Pay the semester fee, collect your student ID, and you are officially a GNI student. Welcome aboard!</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ ELIGIBILITY ══════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Requirements</span>
+        <h2>Eligibility Criteria</h2>
+        <p>Minimum qualifications required for admission to each program at GNI.</p>
+      </div>
+
+      <div class="eligibility-grid" style="max-width:800px; margin:0 auto 48px;">
+        <div class="eligibility-item">
+          <div class="eligibility-prog">BCA</div>
+          <div class="eligibility-req">10+2 (any stream) with 45% min.</div>
+        </div>
+        <div class="eligibility-item">
+          <div class="eligibility-prog">BBA</div>
+          <div class="eligibility-req">10+2 (any stream) with 45% min.</div>
+        </div>
+        <div class="eligibility-item">
+          <div class="eligibility-prog">B.Com</div>
+          <div class="eligibility-req">10+2 (Commerce) with 45% min.</div>
+        </div>
+        <div class="eligibility-item">
+          <div class="eligibility-prog">MCA</div>
+          <div class="eligibility-req">BCA / B.Sc (CS/IT) with 50% min.</div>
+        </div>
+        <div class="eligibility-item">
+          <div class="eligibility-prog">M.Com</div>
+          <div class="eligibility-req">B.Com / BBA with 50% min.</div>
+        </div>
+        <div class="eligibility-item">
+          <div class="eligibility-prog">PGDCA</div>
+          <div class="eligibility-req">Any graduate degree with 45% min.</div>
+        </div>
+      </div>
+
+      <!-- Fee Note -->
+      <div class="fee-note-box" style="max-width:800px; margin:0 auto;">
+        <div class="fee-note-icon">💰</div>
+        <div>
+          <h4>Fee Structure</h4>
+          <p>For detailed fee information, scholarship opportunities, and installment options, please contact the admissions office directly or visit us at the campus. Our counsellors are available Mon–Sat, 9 AM to 5 PM.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA ══════════════════════════════════════════════ -->
+  <section class="section-sm" style="background:var(--surface);">
+    <div class="container">
+      <div style="text-align:center; max-width:560px; margin:0 auto;">
+        <span class="section-label">Take the First Step</span>
+        <h2 style="font-size:1.8rem; color:var(--primary); margin:10px 0 12px;">Ready to Apply?</h2>
+        <p style="margin-bottom:28px;">Speak with our admissions team and find the right program for your goals. Book a free counselling appointment today.</p>
+        <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+          <a href="contact.html" class="btn-accent btn-lg">Book Appointment</a>
+          <a href="about.html" class="btn-secondary btn-lg">Learn About GNI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">GNI</div>
+        <p>Guru Nanak Institute of Technology, Ludhiana</p>
+        <p>Affiliated to Punjab Technical University</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 GT Road, Ludhiana, Punjab - 141001</p>
+        <p>📞 +91 161 234 5678</p>
+        <p>✉️ info@gniludhiana.edu.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guru Nanak Institute of Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

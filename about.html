@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — GNI Ludhiana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+
+    /* ── Mission / Vision ── */
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .mv-card {
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mv-card.mission {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .mv-card.vision {
+      background: var(--accent);
+      color: var(--primary);
+    }
+
+    .mv-card::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      top: -60px;
+      right: -60px;
+      opacity: 0.12;
+    }
+
+    .mv-card.mission::before { background: #fff; }
+    .mv-card.vision::before  { background: var(--primary); }
+
+    .mv-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .mv-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    .mv-card.mission h3 { color: var(--accent); }
+    .mv-card.vision  h3 { color: var(--primary); }
+
+    .mv-card p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .mv-card.mission p { color: rgba(203,213,225,0.9); }
+    .mv-card.vision  p { color: rgba(26,60,94,0.85); }
+
+    /* ── History timeline ── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 36px;
+    }
+
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -27px;
+      top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 0 3px rgba(244,168,7,0.2);
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .timeline-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      background: var(--primary);
+      padding: 56px 24px;
+    }
+
+    .stats-bar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .stats-bar-item {
+      text-align: center;
+      padding: 20px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stats-bar-item:last-child {
+      border-right: none;
+    }
+
+    .stats-bar-item .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stats-bar-item .lbl {
+      font-size: 0.85rem;
+      color: rgba(203,213,225,0.8);
+      font-weight: 500;
+    }
+
+    /* ── Faculty cards ── */
+    .faculty-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .faculty-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .faculty-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .faculty-name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .faculty-dept {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+
+    .faculty-qual {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      background: rgba(26,60,94,0.05);
+      border-radius: 20px;
+      padding: 4px 12px;
+      display: inline-block;
+    }
+
+    /* ── Infrastructure ── */
+    .infra-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .infra-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .infra-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(26,60,94,0.08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .infra-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .infra-desc {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── Affiliation strip ── */
+    .affiliation-strip {
+      background: rgba(244,168,7,0.06);
+      border: 1px solid rgba(244,168,7,0.2);
+      border-radius: var(--radius-lg);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .affiliation-strip h3 {
+      font-size: 1.1rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .affiliation-strip p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+    }
+
+    .affiliation-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--primary);
+      color: var(--accent);
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .mv-grid { grid-template-columns: 1fr; }
+      .stats-bar-grid { grid-template-columns: repeat(2,1fr); }
+      .stats-bar-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="nav-logo">GNI</div>
+        <div class="nav-name">
+          <span class="nav-title">Guru Nanak Institute of Technology</span>
+          <span class="nav-sub">Ludhiana, Punjab</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="login.html" class="btn-primary">Student / Staff Login</a>
+    </div>
+  </nav>
+
+  <!-- ══ PAGE HERO ════════════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="accent-line"></div>
+    <h1>About GNI</h1>
+    <p>Fifteen years of academic excellence, community trust, and student success in the heart of Punjab.</p>
+  </section>
+
+  <!-- ══ INTRO + MISSION/VISION ═══════════════════════════ -->
+  <section class="section" style="background:var(--bg);">
+    <div class="container">
+
+      <div style="max-width:760px; margin: 0 auto 56px; text-align:center;">
+        <span class="section-label">Who We Are</span>
+        <h2 style="font-size:2rem; color:var(--primary); margin:10px 0 16px;">
+          Built on Values. Driven by Excellence.
+        </h2>
+        <p style="font-size:1rem; color:var(--text-secondary); line-height:1.8;">
+          Guru Nanak Institute of Technology was founded with a singular purpose — to make quality higher education accessible to the students of Punjab. Inspired by the teachings of Guru Nanak Dev Ji, we believe in equality, service, and the power of knowledge to transform lives. Today, GNI is a trusted name in Ludhiana, known for its academic standards, dedicated faculty, and student-first approach.
+        </p>
+      </div>
+
+      <div class="mv-grid">
+        <div class="mv-card mission">
+          <div class="mv-icon">🎯</div>
+          <h3>Our Mission</h3>
+          <p>To provide accessible, affordable, and high-quality education that empowers students with the knowledge, skills, and values needed to excel in their chosen careers and contribute meaningfully to society.</p>
+        </div>
+        <div class="mv-card vision">
+          <div class="mv-icon">🌟</div>
+          <h3>Our Vision</h3>
+          <p>To be a leading institution in Punjab recognized for academic excellence, innovation in teaching, and the holistic development of students — producing graduates who are industry-ready, ethical, and socially responsible.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ STATS BAR ════════════════════════════════════════ -->
+  <div class="stats-bar">
+    <div class="stats-bar-grid">
+      <div class="stats-bar-item">
+        <div class="num">2500+</div>
+        <div class="lbl">Students Enrolled</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="num">120+</div>
+        <div class="lbl">Faculty Members</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="num">15+</div>
+        <div class="lbl">Years of Excellence</div>
+      </div>
+      <div class="stats-bar-item">
+        <div class="num">95%</div>
+        <div class="lbl">Student Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HISTORY TIMELINE ══════════════════════════════════ -->
+  <section class="section" style="background:var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Our Journey</span>
+        <h2>A Legacy of Learning</h2>
+        <p>From humble beginnings to one of Ludhiana's trusted institutes — our story.</p>
+      </div>
+
+      <div style="max-width: 680px; margin: 0 auto;">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2009</div>
+            <div class="timeline-title">GNI Founded</div>
+            <div class="timeline-desc">Guru Nanak Institute of Technology was established on GT Road, Ludhiana with BCA and B.Com as the founding programs. The institute started with 120 students and a vision to serve Punjab.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2012</div>
+            <div class="timeline-title">PTU Affiliation Granted</div>
+            <div class="timeline-desc">GNI received full affiliation from Punjab Technical University, validating its academic standards and opening doors for students to earn nationally recognized degrees.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2015</div>
+            <div class="timeline-title">BBA & MCA Programs Launched</div>
+            <div class="timeline-desc">Responding to growing industry demand, GNI expanded its academic portfolio with BBA and MCA programs, welcoming a new generation of management and tech students.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2018</div>
+            <div class="timeline-title">New Campus Infrastructure</div>
+            <div class="timeline-desc">Major expansion of campus facilities — new computer labs, a digital library, seminar halls, and a dedicated student activity center were inaugurated.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2021</div>
+            <div class="timeline-title">Online Learning Integration</div>
+            <div class="timeline-desc">GNI successfully integrated digital learning tools and hybrid teaching models, ensuring uninterrupted education and expanding access to students across Punjab.</div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2024</div>
+            <div class="timeline-title">2500+ Students & Growing</div>
+            <div class="timeline-desc">Today, GNI is home to over 2500 students across six programs, with a strong alumni network and continued commitment to excellence in education.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FACULTY ═══════════════════════════════════════════ -->
+  <section class="section" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Our Team</span>
+        <h2>Meet the Faculty</h2>
+        <p>Experienced educators and industry practitioners dedicated to student success.</p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom:32px;">
+        <div class="faculty-card">
+          <div class="faculty-avatar">PK</div>
+          <div class="faculty-name">Prof. Parminder Kaur</div>
+          <div class="faculty-dept">Computer Science Department</div>
+          <span class="faculty-qual">M.Tech (CS) · 12 Years Exp.</span>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-avatar">HS</div>
+          <div class="faculty-name">Dr. Harpreet Singh</div>
+          <div class="faculty-dept">Mathematics Department</div>
+          <span class="faculty-qual">Ph.D. (Mathematics) · 18 Years Exp.</span>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-avatar">RG</div>
+          <div class="faculty-name">Prof. Ranjit Grewal</div>
+          <div class="faculty-dept">BBA / Management</div>
+          <span class="faculty-qual">MBA (Finance) · 10 Years Exp.</span>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-avatar">NS</div>
+          <div class="faculty-name">Dr. Navneet Sharma</div>
+          <div class="faculty-dept">Commerce Department</div>
+          <span class="faculty-qual">Ph.D. (Commerce) · 15 Years Exp.</span>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-avatar">GK</div>
+          <div class="faculty-name">Prof. Gurpreet Kaur</div>
+          <div class="faculty-dept">Web & IT Department</div>
+          <span class="faculty-qual">MCA · 8 Years Exp.</span>
+        </div>
+        <div class="faculty-card">
+          <div class="faculty-avatar">AS</div>
+          <div class="faculty-name">Prof. Amanpreet Singh</div>
+          <div class="faculty-dept">Database & Systems</div>
+          <span class="faculty-qual">M.Tech (IT) · 9 Years Exp.</span>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <p class="text-muted text-sm">...and 100+ more dedicated faculty members across all departments.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INFRASTRUCTURE ════════════════════════════════════ -->
+  <section class="section" style="background:var(--surface);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Campus Life</span>
+        <h2>World-Class Infrastructure</h2>
+        <p>Modern facilities designed to support learning, research, and personal growth.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="infra-card">
+          <div class="infra-icon">💻</div>
+          <div>
+            <div class="infra-title">Computer Labs</div>
+            <div class="infra-desc">5 fully equipped computer labs with 200+ systems, high-speed internet, and the latest software tools for programming and development.</div>
+          </div>
+        </div>
+        <div class="infra-card">
+          <div class="infra-icon">📖</div>
+          <div>
+            <div class="infra-title">Digital Library</div>
+            <div class="infra-desc">A rich collection of 10,000+ books, journals, and digital resources. Subscribed to national e-library portals for research access.</div>
+          </div>
+        </div>
+        <div class="infra-card">
+          <div class="infra-icon">🏛️</div>
+          <div>
+            <div class="infra-title">Seminar Halls</div>
+            <div class="infra-desc">Three air-conditioned seminar halls with modern AV equipment, used for guest lectures, workshops, and student presentations.</div>
+          </div>
+        </div>
+        <div class="infra-card">
+          <div class="infra-icon">🍽️</div>
+          <div>
+            <div class="infra-title">Cafeteria</div>
+            <div class="infra-desc">A hygienic, subsidized canteen serving nutritious meals and snacks throughout the day, providing a social hub for students.</div>
+          </div>
+        </div>
+        <div class="infra-card">
+          <div class="infra-icon">🏸</div>
+          <div>
+            <div class="infra-title">Sports Facilities</div>
+            <div class="infra-desc">Outdoor grounds for cricket and football, indoor facilities for badminton and table tennis, and an annual inter-college sports meet.</div>
+          </div>
+        </div>
+        <div class="infra-card">
+          <div class="infra-icon">🚌</div>
+          <div>
+            <div class="infra-title">Transport</div>
+            <div class="infra-desc">GNI operates a fleet of buses covering major routes across Ludhiana and surrounding areas, ensuring safe and convenient daily commute.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AFFILIATION ═══════════════════════════════════════ -->
+  <section class="section-sm" style="background:var(--bg);">
+    <div class="container">
+      <div class="affiliation-strip">
+        <div>
+          <h3>Affiliated to Punjab Technical University (PTU)</h3>
+          <p>All GNI programs are formally affiliated with Punjab Technical University, Kapurthala — ensuring standardized curriculum, recognized degrees, and academic credibility across India.</p>
+        </div>
+        <div class="affiliation-badge">
+          🏛️ &nbsp; PTU Affiliated
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">GNI</div>
+        <p>Guru Nanak Institute of Technology, Ludhiana</p>
+        <p>Affiliated to Punjab Technical University</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 GT Road, Ludhiana, Punjab - 141001</p>
+        <p>📞 +91 161 234 5678</p>
+        <p>✉️ info@gniludhiana.edu.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guru Nanak Institute of Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

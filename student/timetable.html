@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timetable — GNI Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    .today-col {
+      background: rgba(244, 168, 7, 0.04);
+    }
+    .today-header {
+      background: var(--accent) !important;
+      color: var(--primary) !important;
+    }
+    .timetable-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .timetable-table {
+      min-width: 780px;
+    }
+    .timetable-table td, .timetable-table th {
+      border-right: 1px solid var(--border);
+    }
+    .timetable-table td:last-child,
+    .timetable-table th:last-child {
+      border-right: none;
+    }
+    .lunch-row td {
+      background: rgba(230, 126, 34, 0.05);
+      font-style: italic;
+      color: var(--warning);
+      font-weight: 500;
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 10px 8px;
+    }
+    .cell-inner {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.4;
+      min-width: 80px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Portal</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">RS</div>
+        <div>
+          <div class="user-name">Rajveer Singh</div>
+          <div class="user-role">BCA 3rd Sem</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+        <a href="timetable.html" class="sidebar-link active">📅 Timetable</a>
+        <a href="results.html" class="sidebar-link">📝 Results</a>
+        <a href="queries.html" class="sidebar-link">💬 My Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>Weekly Timetable</h1>
+        <p>BCA 3rd Semester — Academic Year 2024–25</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Welcome Bar -->
+        <div class="welcome-bar" style="margin-bottom:28px;">
+          <div>
+            <h2>Your Class Schedule 📅</h2>
+            <p>BCA 3rd Sem &nbsp;·&nbsp; Monday to Saturday &nbsp;·&nbsp; Room: CS-204</p>
+          </div>
+          <div class="welcome-badge" id="todayBadge">Today: —</div>
+        </div>
+
+        <!-- Legend -->
+        <div class="card card-sm mb-4" style="margin-bottom:24px;">
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <span style="font-size:0.78rem; font-weight:600; color:var(--text-secondary); margin-right:4px;">LEGEND:</span>
+            <span class="cell-inner tt-ds">Data Structures</span>
+            <span class="cell-inner tt-dbms">DBMS</span>
+            <span class="cell-inner tt-web">Web Tech</span>
+            <span class="cell-inner tt-math">Discrete Math</span>
+            <span class="cell-inner tt-os">Operating Systems</span>
+            <span class="cell-inner tt-lab">Lab / Practical</span>
+          </div>
+        </div>
+
+        <!-- Timetable -->
+        <div class="timetable-wrap">
+          <table class="timetable-table">
+            <thead>
+              <tr>
+                <th style="background:var(--primary); color:rgba(255,255,255,0.9); min-width:90px;">Time</th>
+                <th id="th-mon" style="background:var(--primary); color:rgba(255,255,255,0.9);">Monday</th>
+                <th id="th-tue" style="background:var(--primary); color:rgba(255,255,255,0.9);">Tuesday</th>
+                <th id="th-wed" style="background:var(--primary); color:rgba(255,255,255,0.9);">Wednesday</th>
+                <th id="th-thu" style="background:var(--primary); color:rgba(255,255,255,0.9);">Thursday</th>
+                <th id="th-fri" style="background:var(--primary); color:rgba(255,255,255,0.9);">Friday</th>
+                <th id="th-sat" style="background:var(--primary); color:rgba(255,255,255,0.9);">Saturday</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <!-- 9–10 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">9:00 – 10:00</td>
+                <td><span class="cell-inner tt-ds">Data Structures</span></td>
+                <td><span class="cell-inner tt-math">Discrete Math</span></td>
+                <td><span class="cell-inner tt-web">Web Tech</span></td>
+                <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                <td><span class="cell-inner tt-os">Operating Sys.</span></td>
+                <td style="color:var(--border);">—</td>
+              </tr>
+
+              <!-- 10–11 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">10:00 – 11:00</td>
+                <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                <td><span class="cell-inner tt-web">Web Tech</span></td>
+                <td><span class="cell-inner tt-ds">Data Structures</span></td>
+                <td><span class="cell-inner tt-math">Discrete Math</span></td>
+                <td><span class="cell-inner tt-ds">Data Structures</span></td>
+                <td><span class="cell-inner tt-lab">Lab</span></td>
+              </tr>
+
+              <!-- 11–12 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">11:00 – 12:00</td>
+                <td><span class="cell-inner tt-math">Discrete Math</span></td>
+                <td><span class="cell-inner tt-os">Operating Sys.</span></td>
+                <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                <td><span class="cell-inner tt-web">Web Tech</span></td>
+                <td><span class="cell-inner tt-math">Discrete Math</span></td>
+                <td><span class="cell-inner tt-lab">Lab</span></td>
+              </tr>
+
+              <!-- LUNCH -->
+              <tr class="lunch-row">
+                <td style="font-weight:600; font-size:0.78rem; color:var(--warning);">12:00 – 1:00</td>
+                <td colspan="6">🍽️ &nbsp; Lunch Break</td>
+              </tr>
+
+              <!-- 1–2 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">1:00 – 2:00</td>
+                <td><span class="cell-inner tt-web">Web Tech</span></td>
+                <td><span class="cell-inner tt-ds">Data Structures</span></td>
+                <td><span class="cell-inner tt-os">Operating Sys.</span></td>
+                <td style="color:var(--border);">—</td>
+                <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                <td><span class="cell-inner tt-lab">Lab</span></td>
+              </tr>
+
+              <!-- 2–3 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">2:00 – 3:00</td>
+                <td><span class="cell-inner tt-os">Operating Sys.</span></td>
+                <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                <td><span class="cell-inner tt-math">Discrete Math</span></td>
+                <td><span class="cell-inner tt-web">Web Tech</span></td>
+                <td style="color:var(--border);">—</td>
+                <td style="color:var(--border);">—</td>
+              </tr>
+
+              <!-- 3–4 -->
+              <tr>
+                <td style="font-weight:600; font-size:0.78rem; color:var(--text-secondary); white-space:nowrap;">3:00 – 4:00</td>
+                <td><span class="cell-inner tt-lab">Lab</span></td>
+                <td style="color:var(--border);">—</td>
+                <td><span class="cell-inner tt-lab">Lab</span></td>
+                <td><span class="cell-inner tt-os">Operating Sys.</span></td>
+                <td style="color:var(--border);">—</td>
+                <td style="color:var(--border);">—</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Subject–Teacher Map -->
+        <div class="card mt-4" style="margin-top:28px;">
+          <div class="card-header">
+            <span class="card-title">👨‍🏫 Subject Faculty</span>
+            <span class="badge badge-info">BCA 3rd Sem</span>
+          </div>
+          <div class="table-wrapper" style="box-shadow:none; border:none;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Subject</th>
+                  <th>Faculty</th>
+                  <th>Department</th>
+                  <th>Room</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="cell-inner tt-ds">Data Structures</span></td>
+                  <td class="font-semibold">Prof. Parminder Kaur</td>
+                  <td class="text-muted">Computer Science</td>
+                  <td>CS-204</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-inner tt-dbms">DBMS</span></td>
+                  <td class="font-semibold">Prof. Parminder Kaur</td>
+                  <td class="text-muted">Computer Science</td>
+                  <td>CS-204</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-inner tt-web">Web Technologies</span></td>
+                  <td class="font-semibold">Mr. Gurpreet Bhatia</td>
+                  <td class="text-muted">Computer Science</td>
+                  <td>CS-206</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-inner tt-math">Discrete Mathematics</span></td>
+                  <td class="font-semibold">Dr. Harpreet Singh</td>
+                  <td class="text-muted">Mathematics</td>
+                  <td>MA-101</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-inner tt-os">Operating Systems</span></td>
+                  <td class="font-semibold">Ms. Navneet Dhaliwal</td>
+                  <td class="text-muted">Computer Science</td>
+                  <td>CS-205</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-inner tt-lab">Lab / Practical</span></td>
+                  <td class="font-semibold">Prof. Parminder Kaur</td>
+                  <td class="text-muted">Computer Science</td>
+                  <td>CS-Lab 1</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    requireLogin('student');
+
+    // Highlight today's column
+    const days = ['sun','mon','tue','wed','thu','fri','sat'];
+    const todayIdx = new Date().getDay(); // 0=Sun
+    const todayName = days[todayIdx];
+    const th = document.getElementById('th-' + todayName);
+    if (th) {
+      th.classList.add('today-header');
+      document.getElementById('todayBadge').textContent =
+        'Today: ' + th.textContent;
+    }
+  </script>
+</body>
+</html>

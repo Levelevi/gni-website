@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login — GNI Ludhiana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="login-page">
+
+    <div class="login-card">
+
+      <!-- Brand -->
+      <div class="login-brand">
+        <div class="login-logo">GNI</div>
+        <h1>Guru Nanak Institute of Technology</h1>
+        <p>Ludhiana, Punjab &nbsp;·&nbsp; Student & Staff Portal</p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="login-tabs">
+        <div class="login-tab active" data-tab="student" onclick="switchTab('student')">🎓 Student Login</div>
+        <div class="login-tab" data-tab="teacher" onclick="switchTab('teacher')">👩‍🏫 Teacher Login</div>
+      </div>
+
+      <!-- ── Student Form ── -->
+      <div class="login-form active" id="student-form">
+
+        <div id="student-error" class="login-error"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="student-roll">Roll Number</label>
+          <input
+            class="form-input"
+            type="text"
+            id="student-roll"
+            placeholder="e.g. BCA2301"
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="student-pass">Password</label>
+          <input
+            class="form-input"
+            type="password"
+            id="student-pass"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button class="btn-primary w-full mt-2" onclick="studentLogin()">
+          Login to Student Portal
+        </button>
+
+        <div class="login-demo">
+          <strong>Demo Credentials</strong><br />
+          Roll No: <code>BCA2301</code> &nbsp;|&nbsp; Password: <code>student123</code>
+        </div>
+
+      </div>
+
+      <!-- ── Teacher Form ── -->
+      <div class="login-form" id="teacher-form">
+
+        <div id="teacher-error" class="login-error"></div>
+
+        <div class="form-group">
+          <label class="form-label" for="teacher-emp">Employee ID</label>
+          <input
+            class="form-input"
+            type="text"
+            id="teacher-emp"
+            placeholder="e.g. TCH001"
+            autocomplete="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="teacher-pass">Password</label>
+          <input
+            class="form-input"
+            type="password"
+            id="teacher-pass"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <button class="btn-primary w-full mt-2" onclick="teacherLogin()">
+          Login to Staff Portal
+        </button>
+
+        <div class="login-demo">
+          <strong>Demo Credentials</strong><br />
+          Employee ID: <code>TCH001</code> &nbsp;|&nbsp; Password: <code>teacher123</code>
+        </div>
+
+      </div>
+
+      <!-- Back to site -->
+      <div class="text-center mt-3">
+        <a href="index.html" class="text-sm text-muted" style="transition:color 0.2s;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color=''">
+          ← Back to GNI Website
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

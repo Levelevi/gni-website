@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notices — GNI Staff Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Staff</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">PK</div>
+        <div>
+          <div class="user-name">Prof. Parminder Kaur</div>
+          <div class="user-role">Computer Science Dept.</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">🏠 Dashboard</a>
+        <a href="notices.html"   class="sidebar-link active">📢 Notices</a>
+        <a href="queries.html"   class="sidebar-link">💬 Student Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>Notices</h1>
+        <p>Post announcements and manage existing notices for your students.</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Welcome Bar -->
+        <div class="welcome-bar" style="margin-bottom:28px;">
+          <div>
+            <h2>Notice Board 📢</h2>
+            <p>Announcements are visible to all BCA 3rd Semester students immediately after posting.</p>
+          </div>
+          <div class="welcome-badge">7 Posted</div>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <!-- ── Post Notice Form ── -->
+          <div class="card" style="align-self:start;">
+            <div class="card-header">
+              <span class="card-title">✍️ Post New Notice</span>
+            </div>
+
+            <div id="notice-success" class="alert alert-success hidden">
+              ✅ Notice posted successfully! Students can now see it.
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="notice-title">Notice Title</label>
+              <input
+                type="text"
+                id="notice-title"
+                class="form-input"
+                placeholder="e.g. Exam form last date extended"
+              />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="notice-category">Category</label>
+              <select id="notice-category" class="form-select">
+                <option value="">— Select Category —</option>
+                <option value="Exam">Exam</option>
+                <option value="Event">Event</option>
+                <option value="Holiday">Holiday</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="notice-body">Notice Details</label>
+              <textarea
+                id="notice-body"
+                class="form-textarea"
+                placeholder="Write the full notice here. Be clear and include all relevant details like dates, venues, and deadlines..."
+                style="min-height:140px;"
+              ></textarea>
+              <span class="form-hint">Keep it clear and concise. Include dates and action items.</span>
+            </div>
+
+            <button class="btn-primary w-full" onclick="handlePostNotice()">
+              📢 &nbsp; Post Notice
+            </button>
+          </div>
+
+          <!-- ── All Notices List ── -->
+          <div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+              <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--primary);">All Notices</h3>
+              <span class="badge badge-info" id="notice-count">5 notices</span>
+            </div>
+
+            <div id="notices-list">
+
+              <!-- Notice 1 — Exam -->
+              <div class="notice-card">
+                <div class="notice-card-header">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                      <span class="badge badge-danger">Exam</span>
+                      <span class="text-xs text-muted">22 Nov 2024</span>
+                    </div>
+                    <div class="notice-card-title">Exam Form Submission — Last Date: 30th November</div>
+                  </div>
+                  <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+                </div>
+                <div class="notice-card-body">
+                  All BCA 3rd Semester students must submit their exam forms before 30th November 2024. Late submissions will not be accepted. Visit the examination cell (Room A-12) between 10 AM – 3 PM on working days. Carry your college ID and fee receipt.
+                </div>
+              </div>
+
+              <!-- Notice 2 — Event -->
+              <div class="notice-card">
+                <div class="notice-card-header">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                      <span class="badge badge-accent">Event</span>
+                      <span class="text-xs text-muted">15 Nov 2024</span>
+                    </div>
+                    <div class="notice-card-title">Annual Fest "Roshni 2024" — Registrations Now Open</div>
+                  </div>
+                  <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+                </div>
+                <div class="notice-card-body">
+                  GNI's Annual Cultural Fest "Roshni 2024" will be held on 10th–11th December. Events include solo singing, group dance, coding competition, and debate. Register at the Student Council office (Room B-04) by 5th December. Participation certificates will be provided to all.
+                </div>
+              </div>
+
+              <!-- Notice 3 — Holiday -->
+              <div class="notice-card">
+                <div class="notice-card-header">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                      <span class="badge badge-warning">Holiday</span>
+                      <span class="text-xs text-muted">10 Nov 2024</span>
+                    </div>
+                    <div class="notice-card-title">Library Closed — 25th November (Guru Nanak Jayanti)</div>
+                  </div>
+                  <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+                </div>
+                <div class="notice-card-body">
+                  The college library will remain closed on 25th November 2024 on account of Guru Nanak Jayanti. All due books borrowed before this date should be returned by 23rd November to avoid late fees. The library will resume normal hours on 26th November.
+                </div>
+              </div>
+
+              <!-- Notice 4 — General -->
+              <div class="notice-card">
+                <div class="notice-card-header">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                      <span class="badge badge-info">General</span>
+                      <span class="text-xs text-muted">5 Nov 2024</span>
+                    </div>
+                    <div class="notice-card-title">Internal Assessment Schedule — November 2024 Uploaded</div>
+                  </div>
+                  <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+                </div>
+                <div class="notice-card-body">
+                  The Internal Assessment (IA) schedule for November has been uploaded to the student portal. BCA 3rd Semester assessments are scheduled for 5th December (DS & DBMS) and 7th December (Web Tech, Math & OS). Syllabus covered up to Unit 3 will be included.
+                </div>
+              </div>
+
+              <!-- Notice 5 — Exam -->
+              <div class="notice-card">
+                <div class="notice-card-header">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                      <span class="badge badge-danger">Exam</span>
+                      <span class="text-xs text-muted">1 Nov 2024</span>
+                    </div>
+                    <div class="notice-card-title">End Semester Examinations Begin — 15th December 2024</div>
+                  </div>
+                  <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+                </div>
+                <div class="notice-card-body">
+                  End Semester Examinations for BCA 3rd Semester will commence from 15th December 2024. The detailed date sheet has been submitted to Punjab Technical University and will be shared once confirmed. Students are advised to complete their syllabus and maintain minimum 75% attendance to be eligible.
+                </div>
+              </div>
+
+            </div>
+            <!-- /notices-list -->
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    requireLogin('teacher');
+
+    function handlePostNotice() {
+      const title    = document.getElementById('notice-title').value.trim();
+      const category = document.getElementById('notice-category').value;
+      const body     = document.getElementById('notice-body').value.trim();
+      const listEl   = document.getElementById('notices-list');
+      const successEl = document.getElementById('notice-success');
+
+      // Validation — highlight empties
+      let valid = true;
+      ['notice-title', 'notice-category', 'notice-body'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.value.trim()) {
+          el.style.borderColor = 'var(--danger)';
+          valid = false;
+        } else {
+          el.style.borderColor = '';
+        }
+      });
+      if (!valid) return;
+
+      const now  = new Date();
+      const date = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      const badgeClass = {
+        'Exam':    'badge-danger',
+        'Event':   'badge-accent',
+        'Holiday': 'badge-warning',
+        'General': 'badge-info',
+      }[category] || 'badge-info';
+
+      const card = document.createElement('div');
+      card.className = 'notice-card';
+      card.innerHTML = `
+        <div class="notice-card-header">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="badge ${badgeClass}">${escapeHtml(category)}</span>
+              <span class="text-xs text-muted">${date}</span>
+            </div>
+            <div class="notice-card-title">${escapeHtml(title)}</div>
+          </div>
+          <button class="btn-secondary btn-sm" onclick="handleDeleteNotice(this)">Delete</button>
+        </div>
+        <div class="notice-card-body">${escapeHtml(body)}</div>
+      `;
+
+      listEl.prepend(card);
+      updateNoticeCount();
+
+      // Show success
+      successEl.classList.remove('hidden');
+      setTimeout(() => successEl.classList.add('hidden'), 3500);
+
+      // Reset form
+      document.getElementById('notice-title').value    = '';
+      document.getElementById('notice-category').value = '';
+      document.getElementById('notice-body').value     = '';
+    }
+
+    function handleDeleteNotice(btn) {
+      const card = btn.closest('.notice-card');
+      if (card) {
+        card.style.opacity    = '0';
+        card.style.transform  = 'translateX(20px)';
+        card.style.transition = 'opacity 0.25s, transform 0.25s';
+        setTimeout(() => {
+          card.remove();
+          updateNoticeCount();
+        }, 250);
+      }
+    }
+
+    function updateNoticeCount() {
+      const count = document.querySelectorAll('#notices-list .notice-card').length;
+      document.getElementById('notice-count').textContent = count + ' notice' + (count !== 1 ? 's' : '');
+    }
+  </script>
+</body>
+</html>

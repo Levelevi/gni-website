@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Queries — GNI Student Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+  <div class="portal-layout">
+
+    <!-- ═══════════════════════════════════════════
+         SIDEBAR
+    ═══════════════════════════════════════════ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">GNI Portal</div>
+      <div class="sidebar-user">
+        <div class="user-avatar">RS</div>
+        <div>
+          <div class="user-name">Rajveer Singh</div>
+          <div class="user-role">BCA 3rd Sem</div>
+        </div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
+        <a href="timetable.html" class="sidebar-link">📅 Timetable</a>
+        <a href="results.html" class="sidebar-link">📝 Results</a>
+        <a href="queries.html" class="sidebar-link active">💬 My Queries</a>
+      </nav>
+      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+    </aside>
+
+    <!-- ═══════════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════════ -->
+    <main class="portal-main">
+
+      <div class="portal-header">
+        <h1>My Queries</h1>
+        <p>Ask your teachers a question — they'll reply directly here.</p>
+      </div>
+
+      <div class="portal-content">
+
+        <!-- Welcome Bar -->
+        <div class="welcome-bar" style="margin-bottom:28px;">
+          <div>
+            <h2>Ask a Question 💬</h2>
+            <p>Submit doubts subject-wise. Your teacher will respond within 24–48 hours.</p>
+          </div>
+          <div class="welcome-badge">2 Pending</div>
+        </div>
+
+        <div class="dashboard-grid">
+
+          <!-- ── Submit Query Form ── -->
+          <div class="card" style="align-self:start;">
+            <div class="card-header">
+              <span class="card-title">✍️ Submit New Query</span>
+            </div>
+
+            <div id="query-success" class="alert alert-success hidden">
+              ✅ Query submitted! Your teacher will reply soon.
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="query-subject">Subject</label>
+              <select id="query-subject" class="form-select">
+                <option value="">— Select Subject —</option>
+                <option value="Data Structures">Data Structures</option>
+                <option value="DBMS">Database Management Systems</option>
+                <option value="Web Technologies">Web Technologies</option>
+                <option value="Discrete Mathematics">Discrete Mathematics</option>
+                <option value="Operating Systems">Operating Systems</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="query-text">Your Question</label>
+              <textarea
+                id="query-text"
+                class="form-textarea"
+                placeholder="Describe your doubt clearly. e.g. 'I don't understand how AVL tree rotations work after insertion...'"
+                style="min-height:140px;"
+              ></textarea>
+              <span class="form-hint">Be specific — the more detail you give, the better the reply.</span>
+            </div>
+
+            <button class="btn-primary w-full" onclick="handleSubmitQuery()">
+              📤 &nbsp; Submit Query
+            </button>
+          </div>
+
+          <!-- ── Previous Queries ── -->
+          <div>
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+              <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--primary);">Previous Queries</h3>
+              <div class="filter-row" style="margin-bottom:0;">
+                <button class="filter-btn active" data-filter="all"      onclick="filterQueries('all', this)">All</button>
+                <button class="filter-btn"         data-filter="pending"  onclick="filterQueries('pending', this)">Pending</button>
+                <button class="filter-btn"         data-filter="answered" onclick="filterQueries('answered', this)">Answered</button>
+              </div>
+            </div>
+
+            <div id="queries-list">
+
+              <!-- Query 1 — Answered -->
+              <div class="query-card">
+                <div class="query-card-header">
+                  <div class="query-meta">
+                    <strong>Data Structures</strong> &nbsp;·&nbsp; 12 Nov 2024
+                  </div>
+                  <span class="badge badge-success">Answered</span>
+                </div>
+                <div class="query-text">
+                  Can you explain the difference between a stack implemented using an array versus a linked list? Which one is better for memory usage?
+                </div>
+                <div class="query-reply">
+                  <div class="query-reply-label">✅ Prof. Parminder Kaur replied:</div>
+                  Great question, Rajveer! Array-based stacks have fixed size (you must define max size upfront) but offer O(1) access. Linked list stacks are dynamic — they grow as needed — but have extra memory overhead per node for the pointer. For most exam problems, array-based is simpler. For real-world apps where size is unknown, linked list is preferred.
+                </div>
+              </div>
+
+              <!-- Query 2 — Answered -->
+              <div class="query-card">
+                <div class="query-card-header">
+                  <div class="query-meta">
+                    <strong>Web Technologies</strong> &nbsp;·&nbsp; 8 Nov 2024
+                  </div>
+                  <span class="badge badge-success">Answered</span>
+                </div>
+                <div class="query-text">
+                  What is the difference between <code style="background:var(--bg); padding:2px 6px; border-radius:4px; font-size:0.82rem;">position: absolute</code> and <code style="background:var(--bg); padding:2px 6px; border-radius:4px; font-size:0.82rem;">position: fixed</code> in CSS?
+                </div>
+                <div class="query-reply">
+                  <div class="query-reply-label">✅ Mr. Gurpreet Bhatia replied:</div>
+                  <code>position: absolute</code> places the element relative to its nearest positioned ancestor. <code>position: fixed</code> places it relative to the viewport — it stays in the same spot even when you scroll. Think of a sticky navbar — that uses <code>fixed</code> or <code>sticky</code>. Good question for your exam!
+                </div>
+              </div>
+
+              <!-- Query 3 — Pending -->
+              <div class="query-card">
+                <div class="query-card-header">
+                  <div class="query-meta">
+                    <strong>Discrete Mathematics</strong> &nbsp;·&nbsp; 18 Nov 2024
+                  </div>
+                  <span class="badge badge-warning">Pending</span>
+                </div>
+                <div class="query-text">
+                  I'm confused about the difference between a relation being "reflexive" vs "symmetric". Can you give a simple example with a set of numbers?
+                </div>
+              </div>
+
+              <!-- Query 4 — Pending -->
+              <div class="query-card">
+                <div class="query-card-header">
+                  <div class="query-meta">
+                    <strong>Operating Systems</strong> &nbsp;·&nbsp; 20 Nov 2024
+                  </div>
+                  <span class="badge badge-warning">Pending</span>
+                </div>
+                <div class="query-text">
+                  In the Banker's algorithm, what exactly is the "safe state"? I read the definition but I can't figure out how to check it in a numerical example.
+                </div>
+              </div>
+
+            </div>
+            <!-- /queries-list -->
+
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="../script.js"></script>
+  <script>
+    requireLogin('student');
+
+    function handleSubmitQuery() {
+      const subject = document.getElementById('query-subject').value;
+      const text    = document.getElementById('query-text').value.trim();
+      const listEl  = document.getElementById('queries-list');
+      const successEl = document.getElementById('query-success');
+
+      if (!subject || !text) {
+        const sel = document.getElementById('query-subject');
+        const ta  = document.getElementById('query-text');
+        if (!subject) sel.style.borderColor = 'var(--danger)';
+        else          sel.style.borderColor = '';
+        if (!text)    ta.style.borderColor  = 'var(--danger)';
+        else          ta.style.borderColor  = '';
+        return;
+      }
+
+      // Reset borders
+      document.getElementById('query-subject').style.borderColor = '';
+      document.getElementById('query-text').style.borderColor    = '';
+
+      const now  = new Date();
+      const date = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      const card = document.createElement('div');
+      card.className = 'query-card';
+      card.innerHTML = `
+        <div class="query-card-header">
+          <div class="query-meta">
+            <strong>${escapeHtml(subject)}</strong> &nbsp;·&nbsp; ${date}
+          </div>
+          <span class="badge badge-warning">Pending</span>
+        </div>
+        <div class="query-text">${escapeHtml(text)}</div>
+      `;
+
+      listEl.prepend(card);
+
+      // Show success alert
+      successEl.classList.remove('hidden');
+      setTimeout(() => successEl.classList.add('hidden'), 3500);
+
+      // Reset form
+      document.getElementById('query-subject').value = '';
+      document.getElementById('query-text').value    = '';
+    }
+  </script>
+</body>
+</html>

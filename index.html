@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GNI Ludhiana — Guru Nanak Institute of Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Hero ── */
+    .hero {
+      background: var(--primary);
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,82,152,0.45) 0%, transparent 70%);
+      top: -200px;
+      right: -150px;
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(244,168,7,0.07) 0%, transparent 70%);
+      bottom: -80px;
+      left: 10%;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(244,168,7,0.12);
+      border: 1px solid rgba(244,168,7,0.25);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: rgba(203,213,225,0.85);
+      max-width: 480px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Hero stats */
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+
+    .hero-stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+
+    .hero-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-stat .lbl {
+      font-size: 0.8rem;
+      color: rgba(203,213,225,0.7);
+      font-weight: 500;
+    }
+
+    /* Hero visual card */
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      backdrop-filter: blur(6px);
+    }
+
+    .info-card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+    }
+
+    .info-card h3 {
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .info-card p {
+      font-size: 0.82rem;
+      color: rgba(203,213,225,0.7);
+    }
+
+    .info-card-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* ── Why GNI ── */
+    .why-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .why-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .why-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(26,60,94,0.08);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 18px;
+    }
+
+    .why-card h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .why-card p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── Programs strip ── */
+    .programs-strip {
+      background: var(--primary);
+      padding: 64px 24px;
+    }
+
+    .programs-strip .section-header h2 {
+      color: #fff;
+    }
+
+    .programs-strip .section-header p {
+      color: rgba(203,213,225,0.8);
+    }
+
+    .program-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 40px;
+      padding: 12px 22px;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .program-pill:hover {
+      background: rgba(244,168,7,0.15);
+      border-color: rgba(244,168,7,0.3);
+      color: var(--accent);
+    }
+
+    .program-pill .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .pills-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    /* ── Notice strip ── */
+    .notice-strip {
+      background: var(--accent);
+      padding: 14px 24px;
+      overflow: hidden;
+    }
+
+    .notice-strip-inner {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .notice-strip-label {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .notice-strip p {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--primary);
+    }
+
+    /* ── Testimonials ── */
+    .testimonial-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-quote {
+      font-size: 2rem;
+      color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .testimonial-role {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+    }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      border-radius: var(--radius-lg);
+      padding: 56px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(244,168,7,0.07);
+      top: -80px;
+      right: -60px;
+    }
+
+    .cta-banner h2 {
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: rgba(203,213,225,0.85);
+      margin-bottom: 32px;
+      font-size: 1rem;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-visual { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { min-height: auto; padding: 60px 20px; }
+      .hero h1 { font-size: 1.9rem; }
+      .cta-banner { padding: 36px 24px; }
+      .cta-banner h2 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <div class="nav-logo">GNI</div>
+        <div class="nav-name">
+          <span class="nav-title">Guru Nanak Institute of Technology</span>
+          <span class="nav-sub">Ludhiana, Punjab</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="login.html" class="btn-primary">Student / Staff Login</a>
+    </div>
+  </nav>
+
+  <!-- ══ NOTICE STRIP ════════════════════════════════════ -->
+  <div class="notice-strip">
+    <div class="notice-strip-inner">
+      <span class="notice-strip-label">📢 Notice</span>
+      <p>Admissions Open 2025–26 &nbsp;·&nbsp; BCA, BBA, B.Com, MCA, M.Com, PGDCA &nbsp;·&nbsp; Limited Seats Available</p>
+    </div>
+  </div>
+
+  <!-- ══ HERO ════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-inner">
+
+      <!-- Left -->
+      <div class="hero-left">
+        <div class="hero-tag">
+          ⭐ Affiliated to Punjab Technical University
+        </div>
+        <h1>Shaping <span>Futures</span> with Quality Education</h1>
+        <p class="hero-desc">
+          Guru Nanak Institute of Technology, Ludhiana offers industry-relevant programs in technology, commerce, and management — preparing students for the careers of tomorrow.
+        </p>
+        <div class="hero-actions">
+          <a href="courses.html" class="btn-accent btn-lg">Explore Programs</a>
+          <a href="contact.html" class="btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.35);color:#fff;">Book Appointment</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="num">2500+</div>
+            <div class="lbl">Students Enrolled</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">120+</div>
+            <div class="lbl">Expert Faculty</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">6</div>
+            <div class="lbl">Programs Offered</div>
+          </div>
+          <div class="hero-stat">
+            <div class="num">15+</div>
+            <div class="lbl">Years of Excellence</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="hero-visual">
+        <div class="info-card">
+          <div class="info-card-icon">🎓</div>
+          <h3>Academic Excellence</h3>
+          <p>Rigorous curriculum designed with industry input and PTU guidelines</p>
+        </div>
+        <div class="info-card-row">
+          <div class="info-card">
+            <div class="info-card-icon">💻</div>
+            <h3>Modern Labs</h3>
+            <p>State-of-the-art computer & science labs</p>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🏆</div>
+            <h3>Placements</h3>
+            <p>Strong placement record with top companies</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="info-card-icon">📍</div>
+          <h3>GT Road, Ludhiana</h3>
+          <p>Conveniently located with excellent transport connectivity across Punjab</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ WHY GNI ══════════════════════════════════════════ -->
+  <section class="section" style="background: var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Why Choose Us</span>
+        <h2>The GNI Advantage</h2>
+        <p>We combine academic rigour with practical exposure to help students thrive in competitive environments.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="why-card">
+          <div class="why-icon">📚</div>
+          <h3>PTU Affiliated Curriculum</h3>
+          <p>All programs are affiliated with Punjab Technical University, ensuring nationally recognized degrees with structured, up-to-date syllabi.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">👨‍💻</div>
+          <h3>Hands-On Learning</h3>
+          <p>Labs, projects, and practical sessions are integral to every program. Students graduate with real skills, not just theoretical knowledge.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🌐</div>
+          <h3>Industry Connections</h3>
+          <p>Regular industry visits, guest lectures from professionals, and internship tie-ups bridge the gap between academics and the real world.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🏅</div>
+          <h3>Experienced Faculty</h3>
+          <p>Our faculty brings decades of teaching and industry experience, providing mentorship that goes beyond the classroom.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🤝</div>
+          <h3>Supportive Environment</h3>
+          <p>Small batch sizes ensure personalized attention. GNI believes every student deserves the support they need to succeed.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💰</div>
+          <h3>Affordable Education</h3>
+          <p>Quality education should be accessible. GNI offers competitive fee structures with scholarship opportunities for meritorious students.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROGRAMS STRIP ═══════════════════════════════════ -->
+  <section class="programs-strip">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label" style="color:var(--accent-light);">Our Programs</span>
+        <h2>Find Your Path</h2>
+        <p>Six programs across technology, commerce, and management — from undergraduate to postgraduate.</p>
+      </div>
+
+      <div class="pills-wrap">
+        <div class="program-pill"><span class="dot"></span> BCA — Bachelor of Computer Applications</div>
+        <div class="program-pill"><span class="dot"></span> BBA — Bachelor of Business Administration</div>
+        <div class="program-pill"><span class="dot"></span> B.Com — Bachelor of Commerce</div>
+        <div class="program-pill"><span class="dot"></span> MCA — Master of Computer Applications</div>
+        <div class="program-pill"><span class="dot"></span> M.Com — Master of Commerce</div>
+        <div class="program-pill"><span class="dot"></span> PGDCA — Post Graduate Diploma</div>
+      </div>
+
+      <div class="text-center">
+        <a href="courses.html" class="btn-accent btn-lg">View All Programs & Details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TESTIMONIALS ═════════════════════════════════════ -->
+  <section class="section" style="background: var(--bg);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Student Voices</span>
+        <h2>What Our Students Say</h2>
+        <p>Hear from the students who chose GNI and built their careers here.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">GNI gave me the foundation I needed. The faculty is genuinely helpful and the labs are well-equipped. My BCA degree opened so many doors in the IT field.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AM</div>
+            <div>
+              <div class="testimonial-name">Amarjeet Malhotra</div>
+              <div class="testimonial-role">BCA Graduate, 2023</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">I chose GNI for my MCA and it was the best decision. The practical exposure and industry sessions made me job-ready before I even graduated.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">HK</div>
+            <div>
+              <div class="testimonial-name">Harleen Kaur</div>
+              <div class="testimonial-role">MCA Student, Final Year</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-quote">"</div>
+          <p class="testimonial-text">The BBA program at GNI is excellent. Management concepts, practical projects, and supportive professors made my three years truly worthwhile.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RS</div>
+            <div>
+              <div class="testimonial-name">Rahul Sharma</div>
+              <div class="testimonial-role">BBA Graduate, 2024</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CTA BANNER ═══════════════════════════════════════ -->
+  <section class="section-sm" style="background: var(--bg);">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Begin Your Journey at GNI?</h2>
+        <p>Admissions for 2025–26 are now open. Book an appointment with our counselling team today.</p>
+        <div class="cta-actions">
+          <a href="contact.html" class="btn-accent btn-lg">Book Appointment</a>
+          <a href="courses.html" class="btn-secondary btn-lg" style="border-color:rgba(255,255,255,0.3);color:#fff;">View Courses</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">GNI</div>
+        <p>Guru Nanak Institute of Technology, Ludhiana</p>
+        <p>Affiliated to Punjab Technical University</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p>📍 GT Road, Ludhiana, Punjab - 141001</p>
+        <p>📞 +91 161 234 5678</p>
+        <p>✉️ info@gniludhiana.edu.in</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guru Nanak Institute of Technology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
