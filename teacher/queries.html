@@ -17,10 +17,10 @@
     <aside class="sidebar">
       <div class="sidebar-brand">GNI Staff</div>
       <div class="sidebar-user">
-        <div class="user-avatar">PK</div>
+        <div class="user-avatar" id="sidebar-avatar">PK</div>
         <div>
-          <div class="user-name">Prof. Parminder Kaur</div>
-          <div class="user-role">Computer Science Dept.</div>
+          <div class="user-name" id="sidebar-name">Teacher</div>
+          <div class="user-role" id="sidebar-role">Computer Science Dept.</div>
         </div>
       </div>
       <nav class="sidebar-nav">
@@ -28,7 +28,7 @@
         <a href="notices.html"   class="sidebar-link">📢 Notices</a>
         <a href="queries.html"   class="sidebar-link active">💬 Student Queries</a>
       </nav>
-      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+      <a href="../login.html" class="sidebar-logout" onclick="logout(); return false;">🚪 Logout</a>
     </aside>
 
     <!-- ═══════════════════════════════════════════
@@ -49,176 +49,41 @@
             <h2>Inbox 💬</h2>
             <p>BCA 3rd Semester &nbsp;·&nbsp; Respond to keep students on track.</p>
           </div>
-          <div class="welcome-badge" id="pending-badge">4 Pending</div>
+          <div class="welcome-badge" id="pending-badge">0 Pending</div>
         </div>
 
         <!-- Stats Row -->
         <div class="stats-row" style="margin-bottom:28px;">
           <div class="stat-card">
             <div class="stat-icon">📬</div>
-            <div class="stat-value" id="stat-total">5</div>
+            <div class="stat-value" id="stat-total">0</div>
             <div class="stat-label">Total Queries</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">⏳</div>
-            <div class="stat-value" id="stat-pending">4</div>
+            <div class="stat-value" id="stat-pending">0</div>
             <div class="stat-label">Pending</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">✅</div>
-            <div class="stat-value" id="stat-answered">1</div>
+            <div class="stat-value" id="stat-answered">0</div>
             <div class="stat-label">Answered</div>
           </div>
         </div>
 
         <!-- Filter Row -->
         <div class="filter-row" style="margin-bottom:24px;">
-          <button class="filter-btn active" data-filter="all"      onclick="filterQueries('all', this)">All &nbsp;<span id="count-all">(5)</span></button>
-          <button class="filter-btn"         data-filter="pending"  onclick="filterQueries('pending', this)">Pending &nbsp;<span id="count-pending">(4)</span></button>
-          <button class="filter-btn"         data-filter="answered" onclick="filterQueries('answered', this)">Answered &nbsp;<span id="count-answered">(1)</span></button>
+          <button class="filter-btn active" data-filter="all"      onclick="filterQueries('all', this)">All &nbsp;<span id="count-all">(0)</span></button>
+          <button class="filter-btn"         data-filter="pending"  onclick="filterQueries('pending', this)">Pending &nbsp;<span id="count-pending">(0)</span></button>
+          <button class="filter-btn"         data-filter="answered" onclick="filterQueries('answered', this)">Answered &nbsp;<span id="count-answered">(0)</span></button>
         </div>
 
         <!-- Queries List -->
         <div id="queries-list">
-
-          <!-- Query 1 — Pending — DS -->
-          <div class="query-card">
-            <div class="query-card-header">
-              <div class="query-meta">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
-                  <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem;">RS</div>
-                  <strong>Rajveer Singh</strong>
-                  <span class="text-xs text-muted">BCA2301</span>
-                </div>
-                <span class="text-xs text-muted">Data Structures &nbsp;·&nbsp; 18 Nov 2024</span>
-              </div>
-              <span class="badge badge-warning">Pending</span>
-            </div>
-            <div class="query-text">
-              I'm confused about the difference between a relation being "reflexive" vs "symmetric". Can you give a simple example with a set of numbers?
-            </div>
-            <div class="reply-area">
-              <div class="form-group" style="margin-bottom:10px;">
-                <textarea
-                  class="form-textarea reply-input"
-                  placeholder="Type your reply here..."
-                  style="min-height:90px;"
-                ></textarea>
-              </div>
-              <button class="btn-primary btn-sm" onclick="handleSendReply(this)">✅ &nbsp; Send Reply</button>
-            </div>
-          </div>
-
-          <!-- Query 2 — Pending — OS -->
-          <div class="query-card">
-            <div class="query-card-header">
-              <div class="query-meta">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
-                  <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem;">RS</div>
-                  <strong>Rajveer Singh</strong>
-                  <span class="text-xs text-muted">BCA2301</span>
-                </div>
-                <span class="text-xs text-muted">Operating Systems &nbsp;·&nbsp; 20 Nov 2024</span>
-              </div>
-              <span class="badge badge-warning">Pending</span>
-            </div>
-            <div class="query-text">
-              In the Banker's algorithm, what exactly is the "safe state"? I read the definition but I can't figure out how to check it in a numerical example.
-            </div>
-            <div class="reply-area">
-              <div class="form-group" style="margin-bottom:10px;">
-                <textarea
-                  class="form-textarea reply-input"
-                  placeholder="Type your reply here..."
-                  style="min-height:90px;"
-                ></textarea>
-              </div>
-              <button class="btn-primary btn-sm" onclick="handleSendReply(this)">✅ &nbsp; Send Reply</button>
-            </div>
-          </div>
-
-          <!-- Query 3 — Pending — DBMS -->
-          <div class="query-card">
-            <div class="query-card-header">
-              <div class="query-meta">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
-                  <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem; background:#7d3c98;">NG</div>
-                  <strong>Navjot Gill</strong>
-                  <span class="text-xs text-muted">BCA2304</span>
-                </div>
-                <span class="text-xs text-muted">DBMS &nbsp;·&nbsp; 19 Nov 2024</span>
-              </div>
-              <span class="badge badge-warning">Pending</span>
-            </div>
-            <div class="query-text">
-              What is the difference between 2NF and 3NF normalization? I keep getting confused when deciding which normal form a table is in.
-            </div>
-            <div class="reply-area">
-              <div class="form-group" style="margin-bottom:10px;">
-                <textarea
-                  class="form-textarea reply-input"
-                  placeholder="Type your reply here..."
-                  style="min-height:90px;"
-                ></textarea>
-              </div>
-              <button class="btn-primary btn-sm" onclick="handleSendReply(this)">✅ &nbsp; Send Reply</button>
-            </div>
-          </div>
-
-          <!-- Query 4 — Pending — DS -->
-          <div class="query-card">
-            <div class="query-card-header">
-              <div class="query-meta">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
-                  <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem;">SK</div>
-                  <strong>Simran Kaur</strong>
-                  <span class="text-xs text-muted">BCA2302</span>
-                </div>
-                <span class="text-xs text-muted">Data Structures &nbsp;·&nbsp; 21 Nov 2024</span>
-              </div>
-              <span class="badge badge-warning">Pending</span>
-            </div>
-            <div class="query-text">
-              Can you explain how merge sort works step by step? Specifically I don't understand the merge step — how do we combine two sorted halves?
-            </div>
-            <div class="reply-area">
-              <div class="form-group" style="margin-bottom:10px;">
-                <textarea
-                  class="form-textarea reply-input"
-                  placeholder="Type your reply here..."
-                  style="min-height:90px;"
-                ></textarea>
-              </div>
-              <button class="btn-primary btn-sm" onclick="handleSendReply(this)">✅ &nbsp; Send Reply</button>
-            </div>
-          </div>
-
-          <!-- Query 5 — Answered — DS -->
-          <div class="query-card">
-            <div class="query-card-header">
-              <div class="query-meta">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
-                  <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem;">RS</div>
-                  <strong>Rajveer Singh</strong>
-                  <span class="text-xs text-muted">BCA2301</span>
-                </div>
-                <span class="text-xs text-muted">Data Structures &nbsp;·&nbsp; 12 Nov 2024</span>
-              </div>
-              <span class="badge badge-success">Answered</span>
-            </div>
-            <div class="query-text">
-              Can you explain the difference between a stack implemented using an array versus a linked list? Which one is better for memory usage?
-            </div>
-            <div class="reply-area">
-              <div class="query-reply">
-                <div class="query-reply-label">✅ Your Reply</div>
-                Array-based stacks have fixed size (you must define max size upfront) but offer O(1) access. Linked list stacks are dynamic — they grow as needed — but have extra memory overhead per node for the pointer. For most exam problems, array-based is simpler. For real-world apps where size is unknown, linked list is preferred.
-              </div>
-            </div>
-          </div>
-
+          <p id="no-queries-msg" style="color:var(--text-secondary); font-size:0.9rem; display:none;">
+            No queries found.
+          </p>
         </div>
-        <!-- /queries-list -->
 
       </div>
     </main>
@@ -227,63 +92,139 @@
   <script src="../script.js"></script>
   <script>
     requireLogin('teacher');
+    populateSidebarUser();
 
+    /* ── Render all queries from localStorage ── */
+    function renderTeacherQueries() {
+      const queries = getAllQueries();
+      const listEl  = document.getElementById('queries-list');
+      const noMsg   = document.getElementById('no-queries-msg');
+
+      // Remove old cards
+      listEl.querySelectorAll('.query-card').forEach(c => c.remove());
+
+      if (queries.length === 0) {
+        noMsg.style.display = 'block';
+        updateStats([]);
+        return;
+      }
+
+      noMsg.style.display = 'none';
+
+      queries.forEach(q => {
+        const card = document.createElement('div');
+        card.className = 'query-card';
+        card.dataset.queryId = q.id;
+
+        const badgeHtml = q.status === 'answered'
+          ? '<span class="badge badge-success">Answered</span>'
+          : '<span class="badge badge-warning">Pending</span>';
+
+        // Determine avatar colour for variety
+        const avatarColors = {
+          'BCA2301': '#1a3c5e',
+          'BCA2302': '#2ecc71',
+          'BCA2303': '#e67e22',
+          'BCA2304': '#7d3c98',
+          'BCA2305': '#e74c3c',
+        };
+        const avatarColor = avatarColors[q.rollNo] || '#1a3c5e';
+
+        const replyAreaHtml = q.status === 'answered'
+          ? `<div class="reply-area">
+               <div class="query-reply">
+                 <div class="query-reply-label">✅ Your Reply</div>
+                 ${escapeHtml(q.reply || '')}
+               </div>
+             </div>`
+          : `<div class="reply-area">
+               <div class="form-group" style="margin-bottom:10px;">
+                 <textarea
+                   class="form-textarea reply-input"
+                   placeholder="Type your reply here..."
+                   style="min-height:90px;"
+                 ></textarea>
+               </div>
+               <button class="btn-primary btn-sm" onclick="handleSendReply(this)">✅ &nbsp; Send Reply</button>
+             </div>`;
+
+        card.innerHTML = `
+          <div class="query-card-header">
+            <div class="query-meta">
+              <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+                <div class="user-avatar" style="width:30px;height:30px;font-size:0.7rem;background:${avatarColor};">
+                  ${escapeHtml(q.initials || '??')}
+                </div>
+                <strong>${escapeHtml(q.name)}</strong>
+                <span class="text-xs text-muted">${escapeHtml(q.rollNo)}</span>
+              </div>
+              <span class="text-xs text-muted">${escapeHtml(q.subject)} &nbsp;·&nbsp; ${escapeHtml(q.date)}</span>
+            </div>
+            ${badgeHtml}
+          </div>
+          <div class="query-text">${escapeHtml(q.text)}</div>
+          ${replyAreaHtml}
+        `;
+
+        listEl.appendChild(card);
+      });
+
+      updateStats(queries);
+    }
+
+    /* ── Send reply → save to localStorage → re-render ── */
     function handleSendReply(btn) {
       const card      = btn.closest('.query-card');
       const textarea  = card.querySelector('.reply-input');
       const replyText = textarea?.value.trim();
+      const queryId   = card.dataset.queryId;
 
       if (!replyText) {
-        textarea.style.borderColor = 'var(--danger)';
-        textarea.placeholder = '⚠️ Please write a reply before sending.';
+        textarea.style.borderColor   = 'var(--danger)';
+        textarea.placeholder         = '⚠️ Please write a reply before sending.';
         return;
       }
       textarea.style.borderColor = '';
 
-      // Update badge
-      const badge = card.querySelector('.badge');
-      if (badge) {
-        badge.textContent = 'Answered';
-        badge.className   = 'badge badge-success';
+      // Persist reply to shared localStorage
+      const success = replyToQuery(queryId, replyText);
+      if (!success) {
+        alert('Error: Query not found. Please refresh the page.');
+        return;
       }
 
-      // Replace textarea + button with reply display
-      const replyArea = card.querySelector('.reply-area');
-      if (replyArea) {
-        replyArea.innerHTML = `
-          <div class="query-reply">
-            <div class="query-reply-label">✅ Your Reply</div>
-            ${escapeHtml(replyText)}
-          </div>
-        `;
-      }
+      // Re-render everything from updated localStorage
+      renderTeacherQueries();
 
-      updateStats();
-
-      // If Pending filter is active, hide this card
+      // Respect active filter after re-render
       const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter;
-      if (activeFilter === 'pending') {
-        card.style.opacity   = '0';
-        card.style.transform = 'translateX(20px)';
-        card.style.transition = 'opacity 0.25s, transform 0.25s';
-        setTimeout(() => card.style.display = 'none', 250);
+      if (activeFilter && activeFilter !== 'all') {
+        document.querySelectorAll('.query-card').forEach(c => {
+          const badge  = c.querySelector('.badge');
+          const status = badge?.textContent.trim().toLowerCase();
+          if (activeFilter === 'pending')  c.style.display = status === 'pending'  ? '' : 'none';
+          if (activeFilter === 'answered') c.style.display = status === 'answered' ? '' : 'none';
+        });
       }
     }
 
-    function updateStats() {
-      const all      = document.querySelectorAll('#queries-list .query-card').length;
-      const pending  = [...document.querySelectorAll('#queries-list .query-card')]
-                        .filter(c => c.querySelector('.badge')?.textContent.trim() === 'Pending').length;
-      const answered = all - pending;
+    /* ── Update stats counters ── */
+    function updateStats(queries) {
+      const total    = queries.length;
+      const pending  = queries.filter(q => q.status === 'pending').length;
+      const answered = queries.filter(q => q.status === 'answered').length;
 
-      document.getElementById('stat-total').textContent    = all;
+      document.getElementById('stat-total').textContent    = total;
       document.getElementById('stat-pending').textContent  = pending;
       document.getElementById('stat-answered').textContent = answered;
       document.getElementById('pending-badge').textContent = pending + ' Pending';
-      document.getElementById('count-all').textContent     = '(' + all + ')';
+      document.getElementById('count-all').textContent     = '(' + total + ')';
       document.getElementById('count-pending').textContent = '(' + pending + ')';
       document.getElementById('count-answered').textContent= '(' + answered + ')';
     }
+
+    /* ── Initial render ── */
+    renderTeacherQueries();
   </script>
 </body>
 </html>

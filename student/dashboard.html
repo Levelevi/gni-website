@@ -11,30 +11,24 @@
 
   <div class="portal-layout">
 
-    <!-- ═══════════════════════════════════════════
-         SIDEBAR
-    ═══════════════════════════════════════════ -->
     <aside class="sidebar">
       <div class="sidebar-brand">GNI Portal</div>
       <div class="sidebar-user">
-        <div class="user-avatar">RS</div>
+        <div class="user-avatar" id="sidebar-avatar">?</div>
         <div>
-          <div class="user-name">Rajveer Singh</div>
-          <div class="user-role">BCA 3rd Sem</div>
+          <div class="user-name" id="sidebar-name">Loading…</div>
+          <div class="user-role" id="sidebar-role">BCA 3rd Sem</div>
         </div>
       </div>
       <nav class="sidebar-nav">
-        <a href="dashboard.html" class="sidebar-link active">📊 Dashboard</a>
-        <a href="timetable.html" class="sidebar-link">📅 Timetable</a>
-        <a href="results.html" class="sidebar-link">📝 Results</a>
-        <a href="queries.html" class="sidebar-link">💬 My Queries</a>
+        <a href="dashboard.html"  class="sidebar-link active">📊 Dashboard</a>
+        <a href="timetable.html"  class="sidebar-link">📅 Timetable</a>
+        <a href="results.html"    class="sidebar-link">📝 Results</a>
+        <a href="queries.html"    class="sidebar-link">💬 My Queries</a>
       </nav>
-      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+      <a href="../login.html" class="sidebar-logout" onclick="logout(); return false;">🚪 Logout</a>
     </aside>
 
-    <!-- ═══════════════════════════════════════════
-         MAIN CONTENT
-    ═══════════════════════════════════════════ -->
     <main class="portal-main">
 
       <div class="portal-header">
@@ -47,8 +41,8 @@
         <!-- Welcome Bar -->
         <div class="welcome-bar">
           <div>
-            <h2>Good morning, Rajveer 👋</h2>
-            <p>BCA 3rd Semester &nbsp;·&nbsp; Roll No: BCA2301 &nbsp;·&nbsp; Academic Year 2024–25</p>
+            <h2 id="welcome-msg">Good morning 👋</h2>
+            <p id="welcome-sub">BCA 3rd Semester</p>
           </div>
           <div class="welcome-badge">3rd Semester</div>
         </div>
@@ -62,17 +56,17 @@
           </div>
           <div class="stat-card">
             <div class="stat-icon">✅</div>
-            <div class="stat-value">74%</div>
+            <div class="stat-value" id="stat-attendance">—</div>
             <div class="stat-label">Overall Attendance</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">📝</div>
-            <div class="stat-value">7.4</div>
+            <div class="stat-value" id="stat-sgpa">—</div>
             <div class="stat-label">Current SGPA</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">💬</div>
-            <div class="stat-value">2</div>
+            <div class="stat-value" id="stat-queries">0</div>
             <div class="stat-label">Pending Queries</div>
           </div>
         </div>
@@ -80,94 +74,16 @@
         <!-- Dashboard Grid -->
         <div class="dashboard-grid">
 
-          <!-- Attendance Overview -->
+          <!-- Attendance Overview — filled by JS -->
           <div class="card full-width">
             <div class="card-header">
               <span class="card-title">📊 Attendance Overview</span>
-              <span class="badge badge-warning">1 subject at risk</span>
+              <span class="badge" id="attendance-summary-badge">—</span>
             </div>
-            <div class="attendance-grid">
-
-              <!-- DS: 82% — green -->
-              <div class="attendance-card">
-                <div class="attendance-subject">Data Structures</div>
-                <div class="progress-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30" />
-                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
-                      stroke-dasharray="188.5"
-                      stroke-dashoffset="33.9" />
-                  </svg>
-                  <div class="ring-value">82%</div>
-                </div>
-                <span class="badge badge-success">Safe</span>
-              </div>
-
-              <!-- DBMS: 67% — orange -->
-              <div class="attendance-card">
-                <div class="attendance-subject">DBMS</div>
-                <div class="progress-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30" />
-                    <circle class="ring-fill ring-warning" cx="36" cy="36" r="30"
-                      stroke-dasharray="188.5"
-                      stroke-dashoffset="62.2" />
-                  </svg>
-                  <div class="ring-value">67%</div>
-                </div>
-                <span class="badge badge-warning">Low</span>
-              </div>
-
-              <!-- Web Tech: 91% — green -->
-              <div class="attendance-card">
-                <div class="attendance-subject">Web Tech</div>
-                <div class="progress-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30" />
-                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
-                      stroke-dasharray="188.5"
-                      stroke-dashoffset="16.97" />
-                  </svg>
-                  <div class="ring-value">91%</div>
-                </div>
-                <span class="badge badge-success">Excellent</span>
-              </div>
-
-              <!-- Math: 58% — red -->
-              <div class="attendance-card">
-                <div class="attendance-subject">Discrete Math</div>
-                <div class="progress-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30" />
-                    <circle class="ring-fill ring-danger" cx="36" cy="36" r="30"
-                      stroke-dasharray="188.5"
-                      stroke-dashoffset="79.2" />
-                  </svg>
-                  <div class="ring-value">58%</div>
-                </div>
-                <span class="badge badge-danger">At Risk</span>
-              </div>
-
-              <!-- OS: 76% — green -->
-              <div class="attendance-card">
-                <div class="attendance-subject">Operating Systems</div>
-                <div class="progress-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30" />
-                    <circle class="ring-fill ring-success" cx="36" cy="36" r="30"
-                      stroke-dasharray="188.5"
-                      stroke-dashoffset="45.24" />
-                  </svg>
-                  <div class="ring-value">76%</div>
-                </div>
-                <span class="badge badge-success">Safe</span>
-              </div>
-
+            <div class="attendance-grid" id="attendance-grid">
+              <!-- populated by JS -->
             </div>
-
-            <div class="alert alert-danger mt-3" style="margin-bottom:0;">
-              ⚠️ <strong>Discrete Mathematics</strong> attendance is below 60%. Minimum required is 75%. Please attend regularly to avoid detainment.
-            </div>
+            <div id="attendance-alert" class="mt-3" style="margin-bottom:0;"></div>
           </div>
 
           <!-- Notice Board -->
@@ -177,7 +93,6 @@
               <span class="badge badge-info">5 notices</span>
             </div>
             <div class="notice-list">
-
               <div class="notice-item">
                 <span class="notice-date-badge">3 days ago</span>
                 <div>
@@ -185,7 +100,6 @@
                   <div class="notice-meta">Posted by Admin &nbsp;·&nbsp; <span class="badge badge-danger" style="font-size:0.68rem;">Urgent</span></div>
                 </div>
               </div>
-
               <div class="notice-item">
                 <span class="notice-date-badge">1 week ago</span>
                 <div>
@@ -193,7 +107,6 @@
                   <div class="notice-meta">Posted by Student Council &nbsp;·&nbsp; <span class="badge badge-accent" style="font-size:0.68rem;">Event</span></div>
                 </div>
               </div>
-
               <div class="notice-item">
                 <span class="notice-date-badge">2 weeks ago</span>
                 <div>
@@ -201,27 +114,24 @@
                   <div class="notice-meta">Posted by Library Dept.</div>
                 </div>
               </div>
-
               <div class="notice-item">
                 <span class="notice-date-badge">3 weeks ago</span>
                 <div>
-                  <div class="notice-text">Internal Assessment schedule for Nov has been uploaded to the portal</div>
+                  <div class="notice-text">Internal Assessment schedule for Nov has been uploaded</div>
                   <div class="notice-meta">Posted by Examination Cell</div>
                 </div>
               </div>
-
               <div class="notice-item">
                 <span class="notice-date-badge">1 month ago</span>
                 <div>
-                  <div class="notice-text">New batch of BCA 1st Semester — Orientation on 2nd October</div>
+                  <div class="notice-text">New batch BCA 1st Semester — Orientation on 2nd October</div>
                   <div class="notice-meta">Posted by Admin</div>
                 </div>
               </div>
-
             </div>
           </div>
 
-          <!-- Quick Links -->
+          <!-- Quick Actions -->
           <div class="card">
             <div class="card-header">
               <span class="card-title">⚡ Quick Actions</span>
@@ -267,8 +177,107 @@
 
   <script src="../script.js"></script>
   <script>
-    // Auth guard
     requireLogin('student');
+    populateSidebarUser();
+
+    function initDashboard() {
+      const name       = getSessionName();
+      const rollNo     = getSessionId();
+      const data       = getStudentData();
+      const sem3       = getStudentSemData(3);
+      const attendance = getStudentAttendance();
+
+      // Welcome message
+      const hour = new Date().getHours();
+      const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+      const firstName = name.split(' ')[0];
+      document.getElementById('welcome-msg').textContent = `${greeting}, ${firstName} 👋`;
+      document.getElementById('welcome-sub').textContent =
+        `BCA 3rd Semester · Roll No: ${rollNo} · Academic Year 2024–25`;
+
+      // Stats
+      if (sem3) {
+        document.getElementById('stat-sgpa').textContent = sem3.sgpa;
+      }
+
+      // Pending queries
+      const pending = getQueriesForStudent(rollNo).filter(q => q.status === 'pending').length;
+      document.getElementById('stat-queries').textContent = pending;
+
+      // Attendance
+      if (attendance) {
+        const subjects = Object.entries(attendance);
+        const overall  = Math.round(subjects.reduce((s, [,v]) => s + v, 0) / subjects.length);
+        document.getElementById('stat-attendance').textContent = overall + '%';
+
+        // Attendance cards
+        const grid = document.getElementById('attendance-grid');
+        const atRiskSubjects = [];
+
+        subjects.forEach(([subject, pct]) => {
+          const shortName = subject.replace('Technologies','Tech').replace('Mathematics','Math').replace('Operating Systems','Operating Sys.').replace('Data Structures','Data Structures');
+          const offset     = ringOffset(pct);
+          const rClass     = ringClass(pct);
+          const badgeCls   = attendanceBadgeClass(pct);
+          const badgeLabel = attendanceBadge(pct);
+
+          if (pct < 75) atRiskSubjects.push(subject);
+
+          const card = document.createElement('div');
+          card.className = 'attendance-card';
+          card.innerHTML = `
+            <div class="attendance-subject">${escapeHtml(shortName)}</div>
+            <div class="progress-ring">
+              <svg viewBox="0 0 72 72">
+                <circle class="ring-bg" cx="36" cy="36" r="30" />
+                <circle class="ring-fill ${rClass}" cx="36" cy="36" r="30"
+                  stroke-dasharray="188.5"
+                  stroke-dashoffset="${offset}" />
+              </svg>
+              <div class="ring-value">${pct}%</div>
+            </div>
+            <span class="badge ${badgeCls}">${badgeLabel}</span>
+          `;
+          grid.appendChild(card);
+        });
+
+        // Summary badge
+        const dangerCount = subjects.filter(([,v]) => v < 60).length;
+        const warnCount   = subjects.filter(([,v]) => v >= 60 && v < 75).length;
+        const summBadge   = document.getElementById('attendance-summary-badge');
+        if (dangerCount > 0) {
+          summBadge.textContent  = `${dangerCount} subject${dangerCount > 1 ? 's' : ''} at risk`;
+          summBadge.className    = 'badge badge-danger';
+        } else if (warnCount > 0) {
+          summBadge.textContent  = `${warnCount} subject${warnCount > 1 ? 's' : ''} low`;
+          summBadge.className    = 'badge badge-warning';
+        } else {
+          summBadge.textContent  = 'All good ✓';
+          summBadge.className    = 'badge badge-success';
+        }
+
+        // Alert
+        const alertEl = document.getElementById('attendance-alert');
+        if (atRiskSubjects.length > 0) {
+          const critical = atRiskSubjects.filter(s => attendance[s] < 60);
+          const low      = atRiskSubjects.filter(s => attendance[s] >= 60);
+          let alertHtml  = '';
+          if (critical.length > 0) {
+            alertHtml += `<div class="alert alert-danger" style="margin-bottom:${low.length ? '8px' : '0'};">
+              ⚠️ <strong>${critical.join(', ')}</strong> — attendance below 60%. Risk of detainment if not improved immediately.
+            </div>`;
+          }
+          if (low.length > 0) {
+            alertHtml += `<div class="alert alert-warning" style="margin-bottom:0;">
+              ⚠️ <strong>${low.join(', ')}</strong> — attendance below 75%. Minimum required is 75%.
+            </div>`;
+          }
+          alertEl.innerHTML = alertHtml;
+        }
+      }
+    }
+
+    initDashboard();
   </script>
 </body>
 </html>

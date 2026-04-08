@@ -48,18 +48,9 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-    .result-card-highlight h2 {
-      color: #fff;
-      font-size: 1.3rem;
-      margin-bottom: 4px;
-    }
-    .result-card-highlight p {
-      color: rgba(255,255,255,0.72);
-      font-size: 0.875rem;
-    }
-    .result-big-stat {
-      text-align: center;
-    }
+    .result-card-highlight h2 { color: #fff; font-size: 1.3rem; margin-bottom: 4px; }
+    .result-card-highlight p  { color: rgba(255,255,255,0.72); font-size: 0.875rem; }
+    .result-big-stat { text-align: center; }
     .result-big-stat .val {
       font-family: 'Playfair Display', serif;
       font-size: 2.2rem;
@@ -74,10 +65,40 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
     }
-    .divider-v {
-      width: 1px;
-      height: 48px;
-      background: rgba(255,255,255,0.15);
+    .divider-v { width: 1px; height: 48px; background: rgba(255,255,255,0.15); }
+
+    /* Semester tabs */
+    .sem-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .sem-tab {
+      padding: 9px 20px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .sem-tab:hover { border-color: var(--primary); color: var(--primary); }
+    .sem-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .sem-tab.active-sem {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .sem-tab.active.active-sem {
+      background: var(--accent);
+      color: var(--primary);
+      border-color: var(--accent);
     }
   </style>
 </head>
@@ -85,63 +106,60 @@
 
   <div class="portal-layout">
 
-    <!-- ═══════════════════════════════════════════
-         SIDEBAR
-    ═══════════════════════════════════════════ -->
     <aside class="sidebar">
       <div class="sidebar-brand">GNI Portal</div>
       <div class="sidebar-user">
-        <div class="user-avatar">RS</div>
+        <div class="user-avatar" id="sidebar-avatar">?</div>
         <div>
-          <div class="user-name">Rajveer Singh</div>
-          <div class="user-role">BCA 3rd Sem</div>
+          <div class="user-name" id="sidebar-name">Loading…</div>
+          <div class="user-role" id="sidebar-role">BCA 3rd Sem</div>
         </div>
       </div>
       <nav class="sidebar-nav">
-        <a href="dashboard.html" class="sidebar-link">📊 Dashboard</a>
-        <a href="timetable.html" class="sidebar-link">📅 Timetable</a>
-        <a href="results.html" class="sidebar-link active">📝 Results</a>
-        <a href="queries.html" class="sidebar-link">💬 My Queries</a>
+        <a href="dashboard.html"  class="sidebar-link">📊 Dashboard</a>
+        <a href="timetable.html"  class="sidebar-link">📅 Timetable</a>
+        <a href="results.html"    class="sidebar-link active">📝 Results</a>
+        <a href="queries.html"    class="sidebar-link">💬 My Queries</a>
       </nav>
-      <a href="../login.html" class="sidebar-logout" onclick="logout()">🚪 Logout</a>
+      <a href="../login.html" class="sidebar-logout" onclick="logout(); return false;">🚪 Logout</a>
     </aside>
 
-    <!-- ═══════════════════════════════════════════
-         MAIN CONTENT
-    ═══════════════════════════════════════════ -->
     <main class="portal-main">
 
       <div class="portal-header">
         <h1>Results</h1>
-        <p>BCA 3rd Semester — Marks & Grade Card</p>
+        <p id="header-sub">BCA — Marks &amp; Grade Card</p>
       </div>
 
       <div class="portal-content">
 
+        <!-- Semester Tabs -->
+        <div class="sem-tabs">
+          <button class="sem-tab" data-sem="1" onclick="switchSem(1, this)">📘 Semester 1</button>
+          <button class="sem-tab" data-sem="2" onclick="switchSem(2, this)">📗 Semester 2</button>
+          <button class="sem-tab active active-sem" data-sem="3" onclick="switchSem(3, this)">📙 Semester 3 (Current)</button>
+        </div>
+
         <!-- Result Highlight Card -->
         <div class="result-card-highlight">
           <div>
-            <h2>BCA 3rd Semester — Result Card</h2>
-            <p>Rajveer Singh &nbsp;·&nbsp; Roll No: BCA2301 &nbsp;·&nbsp; Academic Year 2024–25</p>
-            <div style="margin-top:14px;">
-              <span class="badge" style="background:rgba(46,204,113,0.2); color:#6effa8; border:1px solid rgba(46,204,113,0.3); font-size:0.8rem;">
-                ✅ PASS
-              </span>
-            </div>
+            <h2 id="res-sem-label">BCA 3rd Semester — Result Card</h2>
+            <p id="res-student-info">Loading…</p>
+            <div style="margin-top:14px;" id="res-status-badge"></div>
           </div>
           <div style="display:flex; align-items:center; gap:28px; flex-wrap:wrap;">
             <div class="result-big-stat">
-              <div class="val">7.4</div>
+              <div class="val" id="res-sgpa">—</div>
               <div class="lbl">SGPA</div>
             </div>
             <div class="divider-v"></div>
             <div class="result-big-stat">
-              <div class="val">68.2%</div>
+              <div class="val" id="res-pct">—</div>
               <div class="lbl">Percentage</div>
             </div>
             <div class="divider-v"></div>
             <div class="result-big-stat">
-              <div class="val">349</div>
+              <div class="val" id="res-total">—</div>
               <div class="lbl">Total Marks</div>
             </div>
           </div>
@@ -151,9 +169,8 @@
         <div class="card" style="margin-bottom:24px;">
           <div class="card-header">
             <span class="card-title">📋 Subject-wise Marks</span>
-            <span class="badge badge-info">5 Subjects · 500 Total</span>
+            <span class="badge badge-info" id="res-subjects-badge">5 Subjects · 500 Total</span>
           </div>
-
           <div class="table-wrapper" style="box-shadow:none; border:none; border-radius:0;">
             <table>
               <thead>
@@ -166,150 +183,25 @@
                   <th style="text-align:center;">Status</th>
                 </tr>
               </thead>
-              <tbody>
-
-                <!-- Data Structures: 18+52=70 B -->
-                <tr>
-                  <td>
-                    <div class="font-semibold" style="font-size:0.875rem;">Data Structures</div>
-                    <div class="text-xs text-muted">DS — BCA301</div>
-                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:70%; background:var(--primary-light);"></div></div>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">18</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">52</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">70</span>
-                  </td>
-                  <td style="text-align:center;"><span class="grade-pill grade-b">B</span></td>
-                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
-                </tr>
-
-                <!-- DBMS: 16+48=64 C -->
-                <tr>
-                  <td>
-                    <div class="font-semibold" style="font-size:0.875rem;">Database Management Systems</div>
-                    <div class="text-xs text-muted">DBMS — BCA302</div>
-                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:64%; background:#e67e22;"></div></div>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">16</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">48</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">64</span>
-                  </td>
-                  <td style="text-align:center;"><span class="grade-pill grade-c">C</span></td>
-                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
-                </tr>
-
-                <!-- Web Tech: 22+61=83 A -->
-                <tr>
-                  <td>
-                    <div class="font-semibold" style="font-size:0.875rem;">Web Technologies</div>
-                    <div class="text-xs text-muted">Web Tech — BCA303</div>
-                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:83%; background:var(--success);"></div></div>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">22</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">61</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">83</span>
-                  </td>
-                  <td style="text-align:center;"><span class="grade-pill grade-a">A</span></td>
-                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
-                </tr>
-
-                <!-- Discrete Math: 14+44=58 D -->
-                <tr>
-                  <td>
-                    <div class="font-semibold" style="font-size:0.875rem;">Discrete Mathematics</div>
-                    <div class="text-xs text-muted">Math — BCA304</div>
-                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:58%; background:var(--danger);"></div></div>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">14</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">44</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-bold" style="font-size:1rem; color:var(--danger);">58</span>
-                  </td>
-                  <td style="text-align:center;"><span class="grade-pill grade-d">D</span></td>
-                  <td style="text-align:center;"><span class="badge badge-warning">Borderline</span></td>
-                </tr>
-
-                <!-- OS: 19+55=74 B -->
-                <tr>
-                  <td>
-                    <div class="font-semibold" style="font-size:0.875rem;">Operating Systems</div>
-                    <div class="text-xs text-muted">OS — BCA305</div>
-                    <div class="marks-bar-wrap"><div class="marks-bar" style="width:74%; background:var(--primary-light);"></div></div>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">19</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-semibold">55</span>
-                  </td>
-                  <td style="text-align:center;">
-                    <span class="font-bold" style="font-size:1rem; color:var(--primary);">74</span>
-                  </td>
-                  <td style="text-align:center;"><span class="grade-pill grade-b">B</span></td>
-                  <td style="text-align:center;"><span class="badge badge-success">Pass</span></td>
-                </tr>
-
+              <tbody id="marks-tbody">
+                <!-- populated by JS -->
               </tbody>
-
-              <!-- Totals Row -->
-              <tfoot>
-                <tr style="background: rgba(26,60,94,0.04); border-top: 2px solid var(--border);">
-                  <td style="font-weight:700; font-size:0.875rem; color:var(--primary); padding:14px 18px;">Total</td>
-                  <td style="text-align:center; font-weight:700; color:var(--primary);">89 / 125</td>
-                  <td style="text-align:center; font-weight:700; color:var(--primary);">260 / 375</td>
-                  <td style="text-align:center; font-weight:700; font-size:1.05rem; color:var(--primary);">349 / 500</td>
-                  <td style="text-align:center;">—</td>
-                  <td style="text-align:center;"><span class="badge badge-success">PASS</span></td>
-                </tr>
-              </tfoot>
+              <tfoot id="marks-tfoot"></tfoot>
             </table>
           </div>
         </div>
 
-        <!-- Summary + Grade Key row -->
+        <!-- Summary + Grade Key -->
         <div class="grid-2" style="gap:24px;">
-
-          <!-- Result Summary -->
           <div class="card">
             <div class="card-header">
               <span class="card-title">📊 Result Summary</span>
             </div>
             <div class="result-summary" style="margin-top:0; border:none; padding:0; box-shadow:none; gap:20px; flex-wrap:wrap;">
-              <div class="result-stat">
-                <span class="label">SGPA</span>
-                <span class="value">7.4</span>
-              </div>
-              <div class="result-stat">
-                <span class="label">Percentage</span>
-                <span class="value pass">68.2%</span>
-              </div>
-              <div class="result-stat">
-                <span class="label">Total Marks</span>
-                <span class="value">349 / 500</span>
-              </div>
-              <div class="result-stat">
-                <span class="label">Result</span>
-                <span class="value pass">PASS</span>
-              </div>
+              <div class="result-stat"><span class="label">SGPA</span><span class="value" id="sum-sgpa">—</span></div>
+              <div class="result-stat"><span class="label">Percentage</span><span class="value pass" id="sum-pct">—</span></div>
+              <div class="result-stat"><span class="label">Total Marks</span><span class="value" id="sum-total">—</span></div>
+              <div class="result-stat"><span class="label">Result</span><span class="value pass">PASS</span></div>
             </div>
             <div class="result-note">
               Results are provisional. Subject to university verification by Punjab Technical University.
@@ -324,49 +216,18 @@
             <div class="table-wrapper" style="box-shadow:none; border:none;">
               <table>
                 <thead>
-                  <tr>
-                    <th>Grade</th>
-                    <th>Marks Range</th>
-                    <th>Grade Points</th>
-                    <th>Remark</th>
-                  </tr>
+                  <tr><th>Grade</th><th>Marks Range</th><th>Grade Points</th><th>Remark</th></tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><span class="grade-pill grade-a">A</span></td>
-                    <td>75 – 100</td>
-                    <td class="font-semibold">9 – 10</td>
-                    <td><span class="badge badge-success">Excellent</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="grade-pill grade-b">B</span></td>
-                    <td>60 – 74</td>
-                    <td class="font-semibold">7 – 8</td>
-                    <td><span class="badge badge-info">Good</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="grade-pill grade-c">C</span></td>
-                    <td>50 – 59</td>
-                    <td class="font-semibold">5 – 6</td>
-                    <td><span class="badge badge-warning">Average</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="grade-pill grade-d">D</span></td>
-                    <td>40 – 49</td>
-                    <td class="font-semibold">4</td>
-                    <td><span class="badge badge-warning">Pass</span></td>
-                  </tr>
-                  <tr>
-                    <td><span class="grade-pill grade-d" style="background:rgba(231,76,60,0.15);">F</span></td>
-                    <td>Below 40</td>
-                    <td class="font-semibold">0</td>
-                    <td><span class="badge badge-danger">Fail</span></td>
-                  </tr>
+                  <tr><td><span class="grade-pill grade-a">A</span></td><td>75 – 100</td><td class="font-semibold">9 – 10</td><td><span class="badge badge-success">Excellent</span></td></tr>
+                  <tr><td><span class="grade-pill grade-b">B</span></td><td>60 – 74</td><td class="font-semibold">7 – 8</td><td><span class="badge badge-info">Good</span></td></tr>
+                  <tr><td><span class="grade-pill grade-c">C</span></td><td>50 – 59</td><td class="font-semibold">5 – 6</td><td><span class="badge badge-warning">Average</span></td></tr>
+                  <tr><td><span class="grade-pill grade-d">D</span></td><td>40 – 49</td><td class="font-semibold">4</td><td><span class="badge badge-warning">Pass</span></td></tr>
+                  <tr><td><span class="grade-pill grade-d" style="background:rgba(231,76,60,0.15);">F</span></td><td>Below 40</td><td class="font-semibold">0</td><td><span class="badge badge-danger">Fail</span></td></tr>
                 </tbody>
               </table>
             </div>
           </div>
-
         </div>
 
       </div>
@@ -376,6 +237,111 @@
   <script src="../script.js"></script>
   <script>
     requireLogin('student');
+    populateSidebarUser();
+
+    let currentSem = 3;
+
+    function barColor(pct) {
+      if (pct >= 75) return 'var(--success)';
+      if (pct >= 60) return 'var(--primary-light)';
+      if (pct >= 50) return '#e67e22';
+      return 'var(--danger)';
+    }
+
+    function statusBadge(total) {
+      if (total >= 40) return '<span class="badge badge-success">Pass</span>';
+      return '<span class="badge badge-danger">Fail</span>';
+    }
+
+    function renderResults(semNum) {
+      const name   = getSessionName();
+      const rollNo = getSessionId();
+      const sem    = getStudentSemData(semNum);
+
+      if (!sem) return;
+
+      // Header
+      document.getElementById('header-sub').textContent = `${sem.label} — Marks & Grade Card`;
+      document.getElementById('res-sem-label').textContent = `${sem.label} — Result Card`;
+      document.getElementById('res-student-info').textContent =
+        `${name} · Roll No: ${rollNo} · Academic Year 2024–25`;
+
+      const isCurrent = semNum === 3;
+      document.getElementById('res-status-badge').innerHTML = isCurrent
+        ? `<span class="badge" style="background:rgba(46,204,113,0.2);color:#6effa8;border:1px solid rgba(46,204,113,0.3);font-size:0.8rem;">✅ PASS (Provisional)</span>`
+        : `<span class="badge" style="background:rgba(46,204,113,0.2);color:#6effa8;border:1px solid rgba(46,204,113,0.3);font-size:0.8rem;">✅ PASS</span>`;
+
+      // Big stats
+      const totalMarks = sem.subjects.reduce((s, sub) => s + sub.total, 0);
+      const maxMarks   = sem.subjects.length * 100;
+      document.getElementById('res-sgpa').textContent  = sem.sgpa;
+      document.getElementById('res-pct').textContent   = sem.percentage + '%';
+      document.getElementById('res-total').textContent = totalMarks;
+      document.getElementById('res-subjects-badge').textContent =
+        `${sem.subjects.length} Subjects · ${maxMarks} Total`;
+
+      // Summary
+      document.getElementById('sum-sgpa').textContent  = sem.sgpa;
+      document.getElementById('sum-pct').textContent   = sem.percentage + '%';
+      document.getElementById('sum-total').textContent = `${totalMarks} / ${maxMarks}`;
+
+      // Marks table body
+      const tbody = document.getElementById('marks-tbody');
+      tbody.innerHTML = '';
+
+      let totalInternal = 0, totalExternal = 0;
+
+      sem.subjects.forEach(sub => {
+        totalInternal += sub.internal;
+        totalExternal += sub.external;
+        const pct = sub.total;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>
+            <div class="font-semibold" style="font-size:0.875rem;">${escapeHtml(sub.name)}</div>
+            <div class="text-xs text-muted">${escapeHtml(sub.code)}</div>
+            <div class="marks-bar-wrap">
+              <div class="marks-bar" style="width:${pct}%; background:${barColor(pct)};"></div>
+            </div>
+          </td>
+          <td style="text-align:center;"><span class="font-semibold">${sub.internal}</span></td>
+          <td style="text-align:center;"><span class="font-semibold">${sub.external}</span></td>
+          <td style="text-align:center;">
+            <span class="font-bold" style="font-size:1rem; color:${pct < 40 ? 'var(--danger)' : 'var(--primary)'};">${sub.total}</span>
+          </td>
+          <td style="text-align:center;"><span class="grade-pill ${gradeClass(sub.grade)}">${sub.grade}</span></td>
+          <td style="text-align:center;">${statusBadge(sub.total)}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      // Footer totals
+      const tfoot = document.getElementById('marks-tfoot');
+      const maxInt = sem.subjects.length * 25;
+      const maxExt = sem.subjects.length * 75;
+      tfoot.innerHTML = `
+        <tr style="background:rgba(26,60,94,0.04); border-top:2px solid var(--border);">
+          <td style="font-weight:700; font-size:0.875rem; color:var(--primary); padding:14px 18px;">Total</td>
+          <td style="text-align:center; font-weight:700; color:var(--primary);">${totalInternal} / ${maxInt}</td>
+          <td style="text-align:center; font-weight:700; color:var(--primary);">${totalExternal} / ${maxExt}</td>
+          <td style="text-align:center; font-weight:700; font-size:1.05rem; color:var(--primary);">${totalMarks} / ${maxMarks}</td>
+          <td style="text-align:center;">—</td>
+          <td style="text-align:center;"><span class="badge badge-success">PASS</span></td>
+        </tr>
+      `;
+    }
+
+    function switchSem(semNum, btn) {
+      currentSem = semNum;
+      document.querySelectorAll('.sem-tab').forEach(t => {
+        t.classList.remove('active');
+      });
+      btn.classList.add('active');
+      renderResults(semNum);
+    }
+
+    // Initial render — sem 3
+    renderResults(3);
   </script>
 </body>
 </html>
