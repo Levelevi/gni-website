@@ -169,11 +169,6 @@ No install. No server. No commands.
 
 ---
 
-## 👨‍💻 Built By
-
-**[Your Name]** · BCA 3rd Semester  
-Guru Nanak Institute of Technology, Ludhiana  
-Academic Year 2024–25
 
 ---
 
